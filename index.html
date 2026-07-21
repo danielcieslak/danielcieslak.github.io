@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[Your Full Name] | Data Scientist &amp; AI Engineer</title>
+    <meta name="description" content="Portfolio of [Your Full Name], Data Scientist specializing in AI/ML, MLOps, and data-driven solutions for healthcare and complex business problems.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Space+Grotesk:wght@500;600&amp;display=swap');
+        
+        :root {
+            --primary: #6366f1;
+        }
+        
+        body {
+            font-family: 'Inter', system_ui, sans-serif;
+        }
+        
+        .font-display {
+            font-family: 'Space Grotesk', 'Inter', sans-serif;
+            font-weight: 600;
+        }
+
+        .section-header {
+            font-size: 2.25rem;
+            line-height: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+        }
+
+        .nav-link {
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .nav-link:hover {
+            color: #6366f1;
+            transform: translateY(-1px);
+        }
+
+        .project-card {
+            transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1), 
+                        box-shadow 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+
+        .skill-badge {
+            transition: all 0.2s ease;
+        }
+        
+        .skill-badge:hover {
+            transform: translateY(-2px);
+            background-color: #6366f1;
+            color: white;
+        }
+
+        .modal {
+            animation: fadeInScale 0.2s ease forwards;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.95) translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #6366f1, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-number {
+            font-variant-numeric: tabular-nums;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #6366f1, transparent);
+        }
+
+        .nav-active {
+            color: #6366f1;
+            font-weight: 600;
+        }
+        
+        .portfolio-bg {
+            background: radial-gradient(at center, #0f172a 0%, #020617 100%);
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-200">
+    <!-- Navbar -->
+    <nav class="bg-slate-950/95 backdrop-blur-lg border-b border-slate-800 sticky top-0 z-50">
+        <div class="max-w-screen-xl mx-auto px-6">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex items-center gap-x-3">
+                    <div class="w-10 h-10 bg-indigo-600 rounded-2xl flex items-center justify-center shadow-inner">
+                        <span class="text-white font-bold text-2xl tracking-tighter">[YN]</span>
+                    </div>
+                    <div>
+                        <span class="font-display text-2xl font-semibold tracking-tight">[Your Name]</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center gap-x-8 text-sm font-medium">
+                    <a href="#about" class="nav-link text-slate-300 hover:text-white">About</a>
+                    <a href="#projects" class="nav-link text-slate-300 hover:text-white">Projects</a>
+                    <a href="#articles" class="nav-link text-slate-300 hover:text-white">Articles</a>
+                    <a href="#learning" class="nav-link text-slate-300 hover:text-white">Learning</a>
+                    <a href="#resume" class="nav-link text-slate-300 hover:text-white">CV</a>
+                </div>
+
+                <div class="hidden md:flex items-center gap-x-3">
+                    <a href="https://github.com/yourusername" target="_blank" 
+                       class="flex items-center gap-x-2 px-4 py-2 text-sm font-medium text-slate-300 hover:text-white transition-colors">
+                        <i class="fab fa-github text-lg"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="https://linkedin.com/in/yourprofile" target="_blank"
+                       class="flex items-center gap-x-2 px-4 py-2 text-sm font-medium text-slate-300 hover:text-white transition-colors">
+                        <i class="fab fa-linkedin text-lg"></i>
+                        <span>LinkedIn</span>
+                    </a>
+                    <a href="#contact" 
+                       class="px-5 py-2.5 bg-white text-slate-950 hover:bg-slate-100 transition-all font-semibold text-sm rounded-3xl flex items-center gap-x-2 shadow-sm">
+                        <span>Contact</span>
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn"
+                        class="md:hidden w-10 h-10 flex items-center justify-center text-slate-400 hover:text-white transition-colors">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-slate-900 border-t border-slate-800 px-6 py-4">
+            <div class="flex flex-col gap-y-1 text-sm">
+                <a href="#about" class="py-3 px-4 hover:bg-slate-800 rounded-2xl text-slate-300">About</a>
+                <a href="#projects" class="py-3 px-4 hover:bg-slate-800 rounded-2xl text-slate-300">Projects</a>
+                <a href="#articles" class="py-3 px-4 hover:bg-slate-800 rounded-2xl text-slate-300">Articles</a>
+                <a href="#learning" class="py-3 px-4 hover:bg-slate-800 rounded-2xl text-slate-300">Learning</a>
+                <a href="#resume" class="py-3 px-4 hover:bg-slate-800 rounded-2xl text-slate-300">CV</a>
+                <div class="h-px bg-slate-800 my-2"></div>
+                <div class="flex gap-x-2 px-4">
+                    <a href="https://github.com/yourusername" target="_blank" class="flex-1 text-center py-3 bg-slate-800 hover:bg-slate-700 rounded-3xl text-sm font-medium">GitHub</a>
+                    <a href="https://linkedin.com/in/yourprofile" target="_blank" class="flex-1 text-center py-3 bg-slate-800 hover:bg-slate-700 rounded-3xl text-sm font-medium">LinkedIn</a>
+                </div>
+                <a href="#contact" class="mt-2 mx-4 text-center py-3 bg-white text-slate-950 font-semibold rounded-3xl">Get in touch</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="max-w-screen-xl mx-auto px-6 pt-16 pb-20">
+        <div class="grid md:grid-cols-12 gap-y-12 items-center">
+            <div class="md:col-span-7 lg:pr-12">
+                <div class="inline-flex items-center gap-x-2 px-4 py-1.5 bg-slate-900 border border-slate-800 rounded-3xl mb-6">
+                    <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+                    <span class="text-emerald-400 text-sm font-medium tracking-wide">Open to opportunities in AI/ML &amp; Data Science</span>
+                </div>
+                
+                <h1 class="font-display text-6xl md:text-7xl leading-[1.05] tracking-tighter font-semibold">
+                    Hi, I'm <span class="gradient-text">[Your Name]</span>.<br>
+                    Data Scientist &amp;<br>AI Engineer.
+                </h1>
+                
+                <p class="mt-6 max-w-lg text-xl text-slate-400 leading-relaxed">
+                    I design and deploy advanced machine learning systems that turn complex data into 
+                    actionable insights — with a focus on healthcare, scalable MLOps, and real-world impact.
+                </p>
+
+                <div class="mt-8 flex flex-wrap gap-4">
+                    <a href="#projects" 
+                       class="inline-flex items-center justify-center gap-x-3 px-8 h-14 bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 transition-all text-white font-semibold rounded-3xl text-base shadow-lg shadow-indigo-950/50">
+                        <span>Explore my projects</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    
+                    <a href="#resume" 
+                       class="inline-flex items-center justify-center gap-x-3 px-7 h-14 border border-slate-700 hover:bg-slate-900 transition-all font-semibold rounded-3xl text-base">
+                        <i class="fas fa-download mr-2"></i>
+                        <span>Download CV</span>
+                    </a>
+                </div>
+
+                <div class="mt-8 flex items-center gap-x-8 text-sm">
+                    <div class="flex items-center gap-x-2 text-slate-400">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>[Your City, Country] • Open to relocation</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hero Visual -->
+            <div class="md:col-span-5 flex justify-center md:justify-end">
+                <div class="relative">
+                    <div class="w-72 h-72 md:w-80 md:h-80 rounded-[3.5rem] overflow-hidden border-4 border-slate-800 shadow-2xl shadow-black/40">
+                        <img src="https://picsum.photos/id/1005/600/600" 
+                             alt="[Your Name] professional portrait" 
+                             class="w-full h-full object-cover grayscale-[0.15]">
+                    </div>
+                    <!-- Accent ring -->
+                    <div class="absolute -inset-1.5 rounded-[3.75rem] border border-indigo-500/20 pointer-events-none"></div>
+                    
+                    <!-- Floating badge -->
+                    <div class="absolute -bottom-3 -right-3 bg-slate-900 border border-slate-700 rounded-2xl px-5 py-3 shadow-xl flex items-center gap-x-3">
+                        <div>
+                            <div class="text-xs text-slate-400">Currently building</div>
+                            <div class="font-semibold text-emerald-400">Production-grade ML systems</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Trust / Quick Stats -->
+    <div class="border-y border-slate-800 bg-slate-900/50">
+        <div class="max-w-screen-xl mx-auto px-6 py-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-y-8 text-center">
+                <div>
+                    <div class="text-4xl font-semibold tracking-tighter stat-number">5+</div>
+                    <div class="text-sm text-slate-400 mt-1">ML models in production</div>
+                </div>
+                <div>
+                    <div class="text-4xl font-semibold tracking-tighter stat-number">3</div>
+                    <div class="text-sm text-slate-400 mt-1">Deployed web applications</div>
+                </div>
+                <div>
+                    <div class="text-4xl font-semibold tracking-tighter stat-number">8</div>
+                    <div class="text-sm text-slate-400 mt-1">Technical articles published</div>
+                </div>
+                <div>
+                    <div class="text-4xl font-semibold tracking-tighter stat-number">2+</div>
+                    <div class="text-sm text-slate-400 mt-1">Years building AI solutions</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section id="about" class="max-w-screen-xl mx-auto px-6 pt-20 pb-16">
+        <div class="max-w-2xl">
+            <span class="text-indigo-400 text-sm font-semibold tracking-[1.5px] uppercase">About me</span>
+            <h2 class="section-header mt-3 tracking-tighter">Building AI that matters.</h2>
+        </div>
+        
+        <div class="mt-10 grid md:grid-cols-12 gap-x-12 gap-y-10">
+            <!-- Bio -->
+            <div class="md:col-span-7">
+                <div class="prose prose-invert max-w-none text-[15.5px] leading-relaxed text-slate-300">
+                    <p>I'm a data scientist with hands-on experience designing, training, and deploying machine learning models that solve real business and scientific problems. My work spans predictive modeling, natural language processing, and end-to-end MLOps pipelines.</p>
+                    
+                    <p class="mt-4">I’m particularly passionate about applying AI in healthcare and life sciences. I believe technology should improve patient outcomes, accelerate scientific discovery, and operate responsibly in regulated environments.</p>
+                    
+                    <p class="mt-4">Beyond building models, I enjoy mentoring junior team members, establishing best practices for model deployment, and translating technical results into clear recommendations for stakeholders.</p>
+                </div>
+                
+                <div class="mt-8">
+                    <a href="#learning" class="inline-flex items-center text-sm font-medium text-indigo-400 hover:text-indigo-300 group">
+                        See what I'm learning right now 
+                        <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Education & Core Info -->
+            <div class="md:col-span-5">
+                <div class="bg-slate-900 border border-slate-800 rounded-3xl p-8">
+                    <div class="flex items-center gap-x-4">
+                        <div class="w-9 h-9 bg-indigo-500/10 text-indigo-400 rounded-2xl flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-graduation-cap text-xl"></i>
+                        </div>
+                        <div>
+                            <div class="font-semibold">[Your Degree, e.g. M.Sc. Data Science]</div>
+                            <div class="text-sm text-slate-400">[University Name] • [Year]</div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 pt-8 border-t border-slate-800">
+                        <div class="text-xs uppercase tracking-widest text-slate-400 mb-3">Core expertise</div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-badge px-4 py-1.5 text-xs font-medium bg-slate-800 hover:bg-indigo-600 rounded-2xl">Python</span>
+                            <span class="skill-badge px-4 py-1.5 text-xs font-medium bg-slate-800 hover:bg-indigo-600 rounded-2xl">PyTorch</span>
+                            <span class="skill-badge px-4 py-1.5 text-xs font-medium bg-slate-800 hover:bg-indigo-600 rounded-2xl">TensorFlow</span>
+                            <span class="skill-badge px-4 py-1.5 text-xs font-medium bg-slate-800 hover:bg-indigo-600 rounded-2xl">Scikit-learn</span>
+                            <span class="skill-badge px-4 py-1.5 text-xs font-medium bg-slate-800 hover:bg-indigo-600 rounded-2xl">MLflow</span>
+                            <span class="skill-badge px-4 py-1.5 text-xs font-medium bg-slate-800 hover:bg-indigo-600 rounded-2xl">Docker</span>
+                            <span class="skill-badge px-4 py-1.5 text-xs font-medium bg-slate-800 hover:bg-indigo-600 rounded-2xl">AWS / GCP</span>
+                            <span class="skill-badge px-4 py-1.5 text-xs font-medium bg-slate-800 hover:bg-indigo-600 rounded-2xl">SQL &amp; dbt</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="bg-slate-900 py-16 border-y border-slate-800">
+        <div class="max-w-screen-xl mx-auto px-6">
+            <div class="flex items-end justify-between mb-10">
+                <div>
+                    <span class="text-indigo-400 text-sm font-semibold tracking-[1.5px] uppercase">Selected work</span>
+                    <h2 class="section-header tracking-tighter mt-2">Projects &amp; Web Apps</h2>
+                </div>
+                <a href="https://github.com/yourusername?tab=repositories" target="_blank" 
+                   class="hidden md:flex items-center text-sm font-medium text-slate-400 hover:text-white transition-colors">
+                    View all on GitHub <i class="fas fa-external-link-alt ml-2 text-xs"></i>
+                </a>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Project 1: Healthcare ML -->
+                <div class="project-card group bg-slate-950 border border-slate-800 rounded-3xl overflow-hidden flex flex-col">
+                    <div class="h-2 bg-gradient-to-r from-indigo-500 to-violet-500"></div>
+                    <div class="p-7 flex-1 flex flex-col">
+                        <div class="flex items-center justify-between">
+                            <span class="px-3 py-1 text-[10px] font-mono tracking-widest bg-emerald-950 text-emerald-400 rounded-2xl">HEALTHCARE • PRODUCTION</span>
+                        </div>
+                        
+                        <h3 class="font-display text-2xl tracking-tight mt-5 mb-3 leading-none">Patient Readmission Risk Predictor</h3>
+                        
+                        <p class="text-slate-400 text-[15px] flex-1">Built an end-to-end XGBoost + PyTorch ensemble model to predict 30-day hospital readmission risk using EHR and claims data. Deployed as an interactive clinical decision support web app.</p>
+                        
+                        <div class="mt-auto pt-6">
+                            <div class="flex flex-wrap gap-1.5 mb-5">
+                                <span class="text-xs px-3 py-1 bg-slate-800 rounded-xl font-medium">Python</span>
+                                <span class="text-xs px-3 py-1 bg-slate-800 rounded-xl font-medium">PyTorch</span>
+                                <span class="text-xs px-3 py-1 bg-slate-800 rounded-xl font-medium">XGBoost</span>
+                                <span class="text-xs px-3 py-1 bg-slate-800 rounded-xl font-medium">Streamlit</span>
+                                <span class="text-xs px-3 py-1 bg-slate-800 rounded-xl font-medium">MLflow</span>
+                            </div>
+                            
+                            <div class="flex items-center justify-between text-sm">
+                                <div>
+                                    <span class="font-semibold text-emerald-400">+18%</span>
+                                    <span class="text-xs text-slate-400"> precision lift in pilot</span>
+                                </div>
+                                <div class="flex gap-x-2">
+                                    <a href="#" target="_blank" class="px-4 py-2 text-xs font-semibold border border-slate-700 hover:bg-slate-800 rounded-2xl flex items-center gap-x-1.5 transition">
+                                        <i class="fab fa-github"></i> <span>Code</span>
+                                    </a>
+                                    <a href="#" target="_blank" onclick="showProjectModal(0)"
+                                       class="px-4 py-2 text-xs font-semibold bg-white text-slate-950 hover:bg-slate-200 rounded-2xl flex items-center gap-x-1.5 transition">
+                                        <span>Live Demo</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: MLOps -->
+                <div class="project-card group bg-slate-950 border border-slate-800 rounded-3xl overflow-hidden flex flex-col">
+                    <div class="h-2 bg-gradient-to-r from-violet-500 to-fuchsia-500"></div>
+                    <div class="p-7 flex-1 flex flex-col">
+                        <div class="flex items-center justify-between">
+                            <span class="px-3 py-1 text-[10px] font-mono tracking-widest bg-violet-950 text-violet-400 rounded-2xl">MLOPS • SCALABLE</span>
+                        </div>
+                        
+                        <h3 class="font-display text-2xl tracking-tight mt-5 mb-3 leading-none">Enterprise MLOps Platform</h3>
+                        
+                        <p class="text-slate-400 text-[15px] flex-1">Designed and implemented a complete MLOps framework (model registry, CI/CD, monitoring) using MLflow, Docker, and GitHub Actions. Reduced model deployment time from weeks to hours.</p>
+                        
+                        <div class="mt-auto pt-6">
+                            <div class="flex flex-wrap gap-1.5 mb-5">
+                                <span class="text-xs px-3 py-1 bg-slate-800 rounded-xl font-medium">MLflow</span>
+                                <span class="text-xs px-3 py-1 bg-slate-800 rounded-xl font-medium">Docker</span>
+                                <span class="text-xs px-3 py-1 bg-slate-800 rounded-xl font-medium">GitHub Actions</span>
+                                <span class="text-xs px-3 py-1 bg-slate-800 rounded-xl font-medium">FastAPI</span>
+                                <span class="text-xs px-3 py-1 bg-slate-800 rounded-xl font-medium">Kubernetes</span>
+                            </div>
+                            
+                            <div class="flex items-center justify-between text-sm">
+                                <div>
+                                    <span class="font-semibold text-emerald-400">85%</span>
+                                    <span class="text-xs text-slate-400"> faster deployment</span>
+                                </div>
+                                <div class="flex gap-x-2">
+                                    <a href="#" target="_blank" class="px-4 py-2 text-xs font-semibold border border-slate-700 hover:bg-slate-800 rounded-2xl flex items-center gap-x-1.5 transition">
+                                        <i class="fab fa-github"></i> <span>Code</span>
+                                    </a>
+                                    <button onclick="showProjectModal(1)"
+                                       class="px-4 py-2 text-xs font-semibold bg-white text-slate-950 hover:bg-slate-200 rounded-2xl flex items-center gap-x-1.5 transition">
+                                        <span>Case Study</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3: NLP / LLM -->
+                <div class="project-card group bg-slate-950 border border-slate-800 rounded-3xl overflow-hidden flex flex-col">
+                    <div class="h-2 bg-gradient-to-r from-amber-500 to-orange-500"></div>
+                    <div class="p-7 flex-1 flex flex-col">
+                        <div class="flex items-center justify-between">
+                            <span class="px-3 py-1 text-[10px] font-mono tracking-widest bg-amber-950 text-amber-400 rounded-2xl">NLP • LLM</span>
+                        </div>
+                        
+                        <h3 class="font-display text-2xl tracking-tight mt-5 mb-3 leading-none">Clinical Notes Intelligence Platform</h3>
+                        
+                        <p class="text-slate-400 text-[15px] flex-1">Fine-tuned domain-specific LLMs (using LoRA + Hugging Face) to extract medical entities, summarize clinical notes, and answer questions from unstructured EHR data. Built a Gradio web interface for clinicians.</p>
+                        
+                        <div class="mt-auto pt-6">
+                            <div class="flex flex-wrap gap-1.5 mb-5">
+                                <span class="text-xs px-3 py-1 bg-slate-800 rounded-xl font-medium">Transformers</span>
+                                <span class="text-xs px-3 py-1 bg-slate-800 rounded-xl font-medium">Hugging Face</span>
+                                <span class="text-xs px-3 py-1 bg-slate-800 rounded-xl font-medium">Gradio</span>
+                                <span class="text-xs px-3 py-1 bg-slate-800 rounded-xl font-medium">LangChain</span>
+                            </div>
+                            
+                            <div class="flex items-center justify-between text-sm">
+                                <div>
+                                    <span class="font-semibold text-emerald-400">92%</span>
+                                    <span class="text-xs text-slate-400"> F1 on entity extraction</span>
+                                </div>
+                                <div class="flex gap-x-2">
+                                    <a href="#" target="_blank" class="px-4 py-2 text-xs font-semibold border border-slate-700 hover:bg-slate-800 rounded-2xl flex items-center gap-x-1.5 transition">
+                                        <i class="fab fa-github"></i> <span>Code</span>
+                                    </a>
+                                    <button onclick="showProjectModal(2)"
+                                       class="px-4 py-2 text-xs font-semibold bg-white text-slate-950 hover:bg-slate-200 rounded-2xl flex items-center gap-x-1.5 transition">
+                                        <span>Live Demo</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="text-center text-xs text-slate-400 mt-8">More projects available on my <a href="https://github.com/yourusername" class="underline hover:text-slate-300">GitHub</a>. I’m happy to discuss any of them in detail.</p>
+        </div>
+    </section>
+
+    <!-- Articles Section -->
+    <section id="articles" class="max-w-screen-xl mx-auto px-6 py-20">
+        <div class="flex items-end justify-between mb-10">
+            <div>
+                <span class="text-indigo-400 text-sm font-semibold tracking-[1.5px] uppercase">Thought leadership</span>
+                <h2 class="section-header tracking-tighter mt-1">Articles &amp; Insights</h2>
+            </div>
+            <a href="https://medium.com/@yourusername" target="_blank" class="text-sm font-medium hidden md:block text-slate-400 hover:text-white">Read all on Medium →</a>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Article cards -->
+            <a href="#" class="group block bg-slate-900 border border-slate-800 rounded-3xl p-7 hover:border-slate-700 transition-colors">
+                <div class="flex items-center gap-x-3 text-xs">
+                    <span class="font-mono text-indigo-400">JAN 2026</span>
+                    <span class="text-slate-500">•</span>
+                    <span class="text-emerald-400 font-medium">12 min read</span>
+                </div>
+                <h3 class="mt-4 font-display text-xl tracking-tight leading-snug group-hover:text-indigo-400 transition">Building Production-Ready MLOps Pipelines with MLflow, Docker &amp; GitHub Actions</h3>
+                <p class="mt-3 text-sm text-slate-400 line-clamp-3">A practical guide to moving from notebook experiments to reliable, versioned, and monitored machine learning systems that teams actually use.</p>
+                <div class="mt-5 flex items-center text-xs text-slate-400">
+                    <span>Read on Medium</span> <i class="fas fa-arrow-up-right-from-square ml-2 text-[10px]"></i>
+                </div>
+            </a>
+
+            <a href="#" class="group block bg-slate-900 border border-slate-800 rounded-3xl p-7 hover:border-slate-700 transition-colors">
+                <div class="flex items-center gap-x-3 text-xs">
+                    <span class="font-mono text-indigo-400">DEC 2025</span>
+                    <span class="text-slate-500">•</span>
+                    <span class="text-emerald-400 font-medium">9 min read</span>
+                </div>
+                <h3 class="mt-4 font-display text-xl tracking-tight leading-snug group-hover:text-indigo-400 transition">Responsible AI in Healthcare: Lessons from Deploying Clinical Prediction Models</h3>
+                <p class="mt-3 text-sm text-slate-400 line-clamp-3">Fairness, explainability, and regulatory considerations when building ML models that affect real patients. What I learned the hard way.</p>
+                <div class="mt-5 flex items-center text-xs text-slate-400">
+                    <span>Read on LinkedIn</span> <i class="fas fa-arrow-up-right-from-square ml-2 text-[10px]"></i>
+                </div>
+            </a>
+
+            <a href="#" class="group block bg-slate-900 border border-slate-800 rounded-3xl p-7 hover:border-slate-700 transition-colors">
+                <div class="flex items-center gap-x-3 text-xs">
+                    <span class="font-mono text-indigo-400">NOV 2025</span>
+                    <span class="text-slate-500">•</span>
+                    <span class="text-emerald-400 font-medium">15 min read</span>
+                </div>
+                <h3 class="mt-4 font-display text-xl tracking-tight leading-snug group-hover:text-indigo-400 transition">From Notebook to Production: How I Deployed a Clinical NLP Model in Under a Week</h3>
+                <p class="mt-3 text-sm text-slate-400 line-clamp-3">End-to-end story of fine-tuning a medical LLM, containerizing it, adding monitoring, and handing it over to clinicians with a simple Gradio interface.</p>
+                <div class="mt-5 flex items-center text-xs text-slate-400">
+                    <span>Read full post</span> <i class="fas fa-arrow-up-right-from-square ml-2 text-[10px]"></i>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Currently Learning -->
+    <section id="learning" class="bg-slate-900 border-y border-slate-800 py-16">
+        <div class="max-w-screen-xl mx-auto px-6">
+            <div class="max-w-2xl mb-10">
+                <span class="text-indigo-400 text-sm font-semibold tracking-[1.5px] uppercase">Growth mindset</span>
+                <h2 class="section-header tracking-tighter mt-2">What I'm learning right now</h2>
+                <p class="mt-3 text-slate-400">Continuous learning is essential in AI. Here's what I'm currently exploring to stay at the frontier and bring more value to teams.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-slate-950 border border-slate-800 rounded-3xl p-7">
+                    <div class="flex items-center gap-x-4">
+                        <div class="text-3xl">🧠</div>
+                        <div>
+                            <div class="font-semibold">Multimodal &amp; Foundation Models</div>
+                            <div class="text-xs text-emerald-400 mt-0.5">IN PROGRESS</div>
+                        </div>
+                    </div>
+                    <p class="mt-5 text-sm text-slate-300">Experimenting with multimodal models (vision + text) for medical imaging and clinical report generation. Fine-tuning with QLoRA on domain-specific data.</p>
+                    <div class="mt-4 text-xs text-slate-400">Resources: Hugging Face, Papers with Code, Stanford CS224N</div>
+                </div>
+
+                <div class="bg-slate-950 border border-slate-800 rounded-3xl p-7">
+                    <div class="flex items-center gap-x-4">
+                        <div class="text-3xl">⚙️</div>
+                        <div>
+                            <div class="font-semibold">Advanced MLOps &amp; LLMOps</div>
+                            <div class="text-xs text-emerald-400 mt-0.5">DEEP DIVE</div>
+                        </div>
+                    </div>
+                    <p class="mt-5 text-sm text-slate-300">Building more robust evaluation frameworks, prompt engineering pipelines, and cost-efficient inference for production LLMs. Exploring LangSmith, Helicone, and custom monitoring.</p>
+                    <div class="mt-4 text-xs text-slate-400">Current focus: Observability + cost control at scale</div>
+                </div>
+
+                <div class="bg-slate-950 border border-slate-800 rounded-3xl p-7">
+                    <div class="flex items-center gap-x-4">
+                        <div class="text-3xl">🛡️</div>
+                        <div>
+                            <div class="font-semibold">Responsible &amp; Explainable AI</div>
+                            <div class="text-xs text-emerald-400 mt-0.5">ONGOING</div>
+                        </div>
+                    </div>
+                    <p class="mt-5 text-sm text-slate-300">Deepening knowledge of fairness metrics, differential privacy, and regulatory frameworks (EU AI Act, FDA guidance) for high-stakes healthcare applications.</p>
+                    <div class="mt-4 text-xs text-slate-400">Reading: "Fairness and Machine Learning" book + recent NeurIPS papers</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resume / CV Section -->
+    <section id="resume" class="max-w-screen-xl mx-auto px-6 py-20">
+        <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-10">
+                <span class="text-indigo-400 text-sm font-semibold tracking-[1.5px] uppercase">Professional background</span>
+                <h2 class="section-header tracking-tighter mt-3">Curriculum Vitae</h2>
+                <p class="mt-3 text-slate-400">A summary of my experience, education, and impact. Full detailed CV available for download.</p>
+            </div>
+
+            <!-- Quick CV Preview -->
+            <div class="bg-slate-900 border border-slate-800 rounded-3xl p-8 md:p-10">
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-y-4 mb-8">
+                    <div>
+                        <div class="font-display text-3xl tracking-tighter">[Your Full Name]</div>
+                        <div class="text-indigo-400 font-medium">Data Scientist | AI/ML Engineer</div>
+                    </div>
+                    <a href="cv.pdf" download 
+                       class="inline-flex items-center justify-center gap-x-3 px-7 h-12 bg-white hover:bg-slate-100 active:bg-slate-200 transition font-semibold text-slate-950 rounded-3xl text-sm shadow">
+                        <i class="fas fa-download"></i>
+                        <span>Download full PDF CV</span>
+                    </a>
+                </div>
+
+                <!-- Experience Timeline -->
+                <div class="space-y-8">
+                    <div>
+                        <div class="flex items-baseline justify-between">
+                            <div>
+                                <span class="font-semibold">Senior Data Scientist</span> 
+                                <span class="text-slate-400">— [Current/Previous Company]</span>
+                            </div>
+                            <span class="text-xs text-slate-400 font-mono">2024 — Present</span>
+                        </div>
+                        <ul class="mt-3 text-sm text-slate-300 space-y-1.5 pl-1">
+                            <li class="flex gap-2"><span class="text-indigo-400 mt-1.5">•</span> Led development of 3 production ML models serving 200k+ monthly predictions in clinical operations.</li>
+                            <li class="flex gap-2"><span class="text-indigo-400 mt-1.5">•</span> Established MLOps standards and mentored 2 junior data scientists on model deployment best practices.</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <div class="flex items-baseline justify-between">
+                            <div>
+                                <span class="font-semibold">Data Scientist</span> 
+                                <span class="text-slate-400">— [Previous Company or Role]</span>
+                            </div>
+                            <span class="text-xs text-slate-400 font-mono">2022 — 2024</span>
+                        </div>
+                        <ul class="mt-3 text-sm text-slate-300 space-y-1.5 pl-1">
+                            <li class="flex gap-2"><span class="text-indigo-400 mt-1.5">•</span> Developed and deployed predictive models for [relevant domain, e.g. patient outcomes / demand forecasting].</li>
+                            <li class="flex gap-2"><span class="text-indigo-400 mt-1.5">•</span> Built data pipelines processing 50M+ records and collaborated with engineering &amp; product teams.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mt-10 pt-8 border-t border-slate-800 grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6 text-sm">
+                    <div>
+                        <div class="font-medium text-xs tracking-widest text-slate-400 mb-2">EDUCATION</div>
+                        <div class="font-semibold">[M.Sc. / Ph.D.] in Data Science, Statistics, or related</div>
+                        <div class="text-xs text-slate-400">[University] • [Graduation Year]</div>
+                        <div class="mt-1 text-xs">Thesis: [Short thesis topic if relevant, e.g. "Deep Learning for Clinical Time-Series Forecasting"]</div>
+                    </div>
+                    <div>
+                        <div class="font-medium text-xs tracking-widest text-slate-400 mb-2">KEY ACHIEVEMENTS &amp; CERTIFICATIONS</div>
+                        <div class="space-y-1 text-xs">
+                            <div>• Published [X] peer-reviewed papers / conference talks</div>
+                            <div>• [Relevant cert, e.g. AWS Certified Machine Learning – Specialty]</div>
+                            <div>• [Any notable open source contribution or Kaggle ranking]</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="text-center text-xs text-slate-400 mt-6">The full CV includes complete project details, publications, and references. <a href="cv.pdf" class="underline">Download PDF</a></p>
+        </div>
+    </section>
+
+    <!-- Contact / CTA -->
+    <section id="contact" class="border-t border-slate-800 bg-slate-900 py-16">
+        <div class="max-w-screen-xl mx-auto px-6 text-center">
+            <div class="max-w-lg mx-auto">
+                <h2 class="font-display text-4xl tracking-tighter">Let's build something impactful together.</h2>
+                <p class="mt-4 text-slate-400">I'm always excited to discuss new challenges in AI, healthcare data, or MLOps. Whether you're hiring or collaborating, I'd love to hear from you.</p>
+                
+                <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="mailto:your.email@example.com" 
+                       class="inline-flex items-center justify-center gap-x-3 px-8 h-14 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-3xl transition-all">
+                        <i class="fas fa-envelope"></i>
+                        <span>Send me an email</span>
+                    </a>
+                    <a href="https://calendly.com/yourusername" target="_blank"
+                       class="inline-flex items-center justify-center gap-x-3 px-8 h-14 border border-slate-700 hover:bg-slate-800 font-semibold rounded-3xl transition-all">
+                        <span>Book a 30-min chat</span>
+                    </a>
+                </div>
+                
+                <div class="mt-10 text-xs text-slate-400">
+                    Based in [Your City] • Open to relocation to Denmark &amp; remote opportunities
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-8 border-t border-slate-800">
+        <div class="max-w-screen-xl mx-auto px-6 text-center text-xs text-slate-500">
+            © 2026 [Your Full Name]. Built with care for opportunities that create real impact. 
+            <span class="hidden md:inline">• This portfolio is tailored for Data Scientist roles in AI/ML and healthcare.</span>
+        </div>
+    </footer>
+
+    <!-- Project Detail Modals -->
+    <div id="project-modal" onclick="if (event.target.id === 'project-modal') hideProjectModal()" class="hidden fixed inset-0 bg-black/70 backdrop-blur-sm z-[100] flex items-center justify-center p-6">
+        <div onclick="event.stopImmediatePropagation()" class="bg-slate-900 border border-slate-700 rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-auto">
+            <!-- Modal content injected by JS -->
+            <div id="modal-content"></div>
+        </div>
+    </div>
+
+    <script>
+        // Tailwind script
+        function initializeTailwind() {
+            document.documentElement.style.setProperty('--accent', '#6366f1');
+        }
+
+        // Mobile menu
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            const icon = mobileBtn.querySelector('i');
+            if (mobileMenu.classList.contains('hidden')) {
+                icon.classList.replace('fa-times', 'fa-bars');
+            } else {
+                icon.classList.replace('fa-bars', 'fa-times');
+            }
+        });
+
+        // Close mobile menu on nav click
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileBtn.querySelector('i').classList.replace('fa-times', 'fa-bars');
+            });
+        });
+
+        // Smooth scroll for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    e.preventDefault();
+                    const navHeight = 80;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.scrollY - navHeight;
+                    
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Project data for modals
+        const projectsData = [
+            {
+                id: 0,
+                title: "Patient Readmission Risk Predictor",
+                subtitle: "Clinical Decision Support System • Deployed",
+                description: "Developed a production-grade ensemble model combining gradient boosting and deep learning to predict 30-day readmission risk for chronic disease patients. The model integrates structured EHR data, lab results, and medication history.",
+                impact: "Improved early intervention identification by 18% in a 6-month pilot across two hospital networks. Reduced false positives by 22% compared to previous rule-based system.",
+                tech: ["Python", "PyTorch", "XGBoost", "Pandas", "MLflow", "Streamlit", "PostgreSQL"],
+                challenges: "Handling class imbalance, missing data in real-world EHR, and building a UI that clinicians actually trust and use daily.",
+                learnings: "Close collaboration with medical staff was crucial. Model explainability (SHAP) and simple confidence scores made adoption much smoother.",
+                links: {
+                    github: "#",
+                    demo: "#",
+                    caseStudy: "#"
+                }
+            },
+            {
+                id: 1,
+                title: "Enterprise MLOps Platform",
+                subtitle: "Scalable Model Lifecycle Management",
+                description: "Architected and implemented a complete MLOps stack that takes models from experiment to production with full traceability, automated testing, and monitoring. Includes feature store integration and automated retraining triggers.",
+                impact: "Cut average model deployment time from 3 weeks to under 4 hours. Enabled 4 cross-functional teams to self-serve model deployments with governance guardrails in place.",
+                tech: ["MLflow", "Docker", "GitHub Actions", "FastAPI", "Kubernetes", "AWS SageMaker", "Prometheus + Grafana"],
+                challenges: "Standardizing across teams with different maturity levels and creating buy-in for new processes without slowing down delivery.",
+                learnings: "Good documentation, templates, and internal 'MLOps office hours' were more effective than top-down mandates.",
+                links: {
+                    github: "#",
+                    demo: "#",
+                    caseStudy: "#"
+                }
+            },
+            {
+                id: 2,
+                title: "Clinical Notes Intelligence Platform",
+                subtitle: "LLM-Powered Medical NLP • Production Ready",
+                description: "Fine-tuned and deployed a domain-adapted large language model for clinical entity extraction, summarization of discharge summaries, and natural language querying of patient records. The solution runs on-prem with strong privacy controls.",
+                impact: "Reduced manual chart review time by ~40% for care coordinators. Achieved 92% F1 on key medical entities in a held-out test set from a major hospital system.",
+                tech: ["Hugging Face Transformers", "PyTorch", "LoRA / QLoRA", "Gradio", "LangChain", "Docker", "FastAPI"],
+                challenges: "Data privacy (PHI), hallucination mitigation, and making the interface fast and intuitive for non-technical clinical users.",
+                learnings: "Human-in-the-loop evaluation and careful prompt engineering + retrieval augmentation were essential for trust and accuracy.",
+                links: {
+                    github: "#",
+                    demo: "#",
+                    caseStudy: "#"
+                }
+            }
+        ];
+
+        // Show project modal
+        function showProjectModal(projectIndex) {
+            const modal = document.getElementById('project-modal');
+            const contentContainer = document.getElementById('modal-content');
+            const project = projectsData[projectIndex];
+            
+            contentContainer.innerHTML = `
+                <div class="p-8 md:p-10">
+                    <!-- Header -->
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <div class="inline-block px-4 py-1 text-xs font-mono tracking-widest bg-indigo-950 text-indigo-400 rounded-2xl mb-4">${project.subtitle}</div>
+                            <h3 class="font-display text-3xl tracking-tight pr-8">${project.title}</h3>
+                        </div>
+                        <button onclick="hideProjectModal()" class="text-slate-400 hover:text-white transition p-2 -mr-2">
+                            <i class="fas fa-times text-2xl"></i>
+                        </button>
+                    </div>
+
+                    <div class="mt-6 prose prose-invert max-w-none text-[15px]">
+                        <p>${project.description}</p>
+                        
+                        <div class="mt-8 grid grid-cols-1 md:grid-cols-5 gap-x-8 gap-y-6">
+                            <div class="md:col-span-3">
+                                <div class="uppercase text-xs tracking-[1.5px] text-indigo-400 font-semibold mb-3">Business &amp; Technical Impact</div>
+                                <p class="text-emerald-300 font-medium">${project.impact}</p>
+                            </div>
+                            
+                            <div class="md:col-span-2">
+                                <div class="uppercase text-xs tracking-[1.5px] text-indigo-400 font-semibold mb-3">Tech Stack</div>
+                                <div class="flex flex-wrap gap-2">
+                                    ${project.tech.map(tech => `<span class="px-3.5 py-1 text-xs bg-slate-800 rounded-2xl font-medium">${tech}</span>`).join('')}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-8">
+                            <div>
+                                <div class="uppercase text-xs tracking-[1.5px] text-indigo-400 font-semibold mb-3">Key Challenges</div>
+                                <p>${project.challenges}</p>
+                            </div>
+                            <div>
+                                <div class="uppercase text-xs tracking-[1.5px] text-indigo-400 font-semibold mb-3">What I Learned</div>
+                                <p>${project.learnings}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action buttons -->
+                    <div class="mt-10 pt-8 border-t border-slate-700 flex flex-wrap gap-3">
+                        <a href="${project.links.github}" target="_blank" 
+                           class="flex-1 md:flex-none inline-flex justify-center items-center gap-x-2 px-6 h-12 border border-slate-600 hover:bg-slate-800 rounded-3xl text-sm font-medium transition">
+                            <i class="fab fa-github text-lg"></i>
+                            <span>View source code</span>
+                        </a>
+                        
+                        <a href="${project.links.demo}" target="_blank" 
+                           class="flex-1 md:flex-none inline-flex justify-center items-center gap-x-2 px-6 h-12 bg-white text-slate-950 hover:bg-slate-100 rounded-3xl text-sm font-semibold transition">
+                            <span>Try the live demo</span>
+                            <i class="fas fa-external-link-alt text-xs"></i>
+                        </a>
+                    </div>
+                    
+                    <p class="text-center text-[10px] text-slate-500 mt-6">This is an example project. Replace with your real projects and update the links.</p>
+                </div>
+            `;
+            
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function hideProjectModal() {
+            const modal = document.getElementById('project-modal');
+            modal.classList.remove('flex');
+            modal.classList.add('hidden');
+        }
+
+        // Keyboard escape for modal
+        document.addEventListener('keydown', function(e) {
+            if (e.key === "Escape") {
+                const modal = document.getElementById('project-modal');
+                if (!modal.classList.contains('hidden')) {
+                    hideProjectModal();
+                }
+            }
+        });
+
+        // Initialize everything
+        function initializePortfolio() {
+            initializeTailwind();
+            
+            // Optional: Highlight active nav section on scroll (simple version)
+            const sections = ['about', 'projects', 'articles', 'learning', 'resume'];
+            const navLinks = document.querySelectorAll('nav a[href^="#"]');
+            
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(sectionId => {
+                    const section = document.getElementById(sectionId);
+                    if (section) {
+                        const sectionTop = section.getBoundingClientRect().top;
+                        if (sectionTop <= 150) {
+                            current = sectionId;
+                        }
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('nav-active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('nav-active');
+                    }
+                });
+            });
+            
+            // Easter egg / tip in console
+            console.log('%c[Portfolio] Tip: Replace all [Your Name], placeholder text, images, and links with your real content. Then deploy to GitHub Pages or Netlify!', 'color:#64748b; font-size: 9px');
+        }
+
+        // Boot
+        window.onload = initializePortfolio;
+    </script>
+</body>
+</html>
