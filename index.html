@@ -8,709 +8,553 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Space+Grotesk:wght@500;600&amp;display=swap');
-        
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+
         :root {
-            --primary: #6366f1;
-        }
-        
-        body {
-            font-family: 'Inter', system_ui, sans-serif;
-        }
-        
-        .font-display {
-            font-family: 'Space Grotesk', 'Inter', sans-serif;
-            font-weight: 600;
+            --accent: #1E3A5F;
+            --accent-dark: #16293f;
         }
 
-        .section-header {
-            font-size: 2.25rem;
-            line-height: 2.5rem;
-            font-weight: 700;
-            letter-spacing: -0.025em;
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            font-weight: 500;
+            color: #9ca3af;
+        }
+
+        .kicker-bar {
+            width: 24px;
+            height: 2px;
+            background-color: var(--accent);
+            display: inline-block;
+            flex-shrink: 0;
+        }
+
+        .link-underline {
+            border-bottom: 1px solid currentColor;
+            padding-bottom: 1px;
+            transition: opacity 0.15s ease, color 0.15s ease;
+        }
+
+        .link-underline:hover {
+            opacity: 0.6;
         }
 
         .nav-link {
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: color 0.15s ease;
         }
-        
+
         .nav-link:hover {
-            color: #6366f1;
-            transform: translateY(-1px);
-        }
-
-        .project-card {
-            transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1), 
-                        box-shadow 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
-        }
-        
-        .project-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-        }
-
-        .skill-badge {
-            transition: all 0.2s ease;
-        }
-        
-        .skill-badge:hover {
-            transform: translateY(-2px);
-            background-color: #6366f1;
-            color: white;
-        }
-
-        .modal {
-            animation: fadeInScale 0.2s ease forwards;
-        }
-
-        @keyframes fadeInScale {
-            from {
-                opacity: 0;
-                transform: scale(0.95) translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1) translateY(0);
-            }
-        }
-
-        .gradient-text {
-            background: linear-gradient(90deg, #6366f1, #a855f7);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .stat-number {
-            font-variant-numeric: tabular-nums;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: 15px;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(to bottom, #6366f1, transparent);
+            color: #fff;
         }
 
         .nav-active {
-            color: #6366f1;
-            font-weight: 600;
+            color: #fff !important;
+            font-weight: 500;
         }
-        
-        .portfolio-bg {
-            background: radial-gradient(at center, #0f172a 0%, #020617 100%);
+
+        .btn-accent {
+            background-color: var(--accent);
+            transition: background-color 0.15s ease;
+        }
+
+        .btn-accent:hover {
+            background-color: var(--accent-dark);
+        }
+
+        .modal {
+            animation: fadeIn 0.15s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        img.photo {
+            filter: grayscale(0.55);
+            transition: filter 0.3s ease;
+        }
+
+        img.photo:hover {
+            filter: grayscale(0);
         }
     </style>
 </head>
-<body class="bg-slate-950 text-slate-200">
-    <!-- Navbar -->
-    <nav class="bg-slate-950/95 backdrop-blur-lg border-b border-slate-800 sticky top-0 z-50">
-        <div class="max-w-screen-xl mx-auto px-6">
+<body class="bg-white text-gray-800">
+    <!-- Fixed Navbar (hidden until you scroll past the intro) -->
+    <nav id="fixed-nav" class="fixed top-0 left-0 right-0 z-50 bg-[#1E3A5F] -translate-y-full transition-transform duration-300 ease-out">
+        <div class="max-w-4xl mx-auto px-6">
             <div class="flex items-center justify-between h-20">
-                <!-- Logo -->
-                <div class="flex items-center gap-x-3">
-                    <div class="w-10 h-10 bg-indigo-600 rounded-2xl flex items-center justify-center shadow-inner">
-                        <span class="text-white font-bold text-2xl tracking-tighter">DC</span>
-                    </div>
-                    <div>
-                        <span class="font-display text-2xl font-semibold tracking-tight">Daniel Cieslak</span>
-                    </div>
-                </div>
+                <a href="#" class="text-base font-medium tracking-tight text-white">Daniel Cieslak</a>
 
                 <!-- Desktop Navigation -->
-                <div class="hidden md:flex items-center gap-x-8 text-sm font-medium">
-                    <a href="#about" class="nav-link text-slate-300 hover:text-white">About</a>
-                    <a href="#projects" class="nav-link text-slate-300 hover:text-white">Projects</a>
-                    <a href="#articles" class="nav-link text-slate-300 hover:text-white">Articles</a>
-                    <a href="#learning" class="nav-link text-slate-300 hover:text-white">Learning</a>
-                    <a href="#resume" class="nav-link text-slate-300 hover:text-white">CV</a>
+                <div class="hidden md:flex items-center gap-x-8 text-sm text-gray-300">
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#projects" class="nav-link">Projects</a>
+                    <a href="#articles" class="nav-link">Articles</a>
+                    <a href="#learning" class="nav-link">Learning</a>
+                    <a href="#resume" class="nav-link">CV</a>
+                    <a href="#contact" class="nav-link">Contact</a>
                 </div>
 
-                <div class="hidden md:flex items-center gap-x-3">
-                    <a href="https://github.com/danielcieslak" target="_blank" 
-                       class="flex items-center gap-x-2 px-4 py-2 text-sm font-medium text-slate-300 hover:text-white transition-colors">
+                <div class="hidden md:flex items-center gap-x-5">
+                    <a href="https://github.com/danielcieslak" target="_blank" aria-label="GitHub"
+                       class="text-gray-300 hover:text-white transition-colors">
                         <i class="fab fa-github text-lg"></i>
-                        <span>GitHub</span>
                     </a>
-                    <a href="https://linkedin.com/in/cieslakdaniel" target="_blank"
-                       class="flex items-center gap-x-2 px-4 py-2 text-sm font-medium text-slate-300 hover:text-white transition-colors">
+                    <a href="https://linkedin.com/in/cieslakdaniel" target="_blank" aria-label="LinkedIn"
+                       class="text-gray-300 hover:text-white transition-colors">
                         <i class="fab fa-linkedin text-lg"></i>
-                        <span>LinkedIn</span>
-                    </a>
-                    <a href="#contact" 
-                       class="px-5 py-2.5 bg-white text-slate-950 hover:bg-slate-100 transition-all font-semibold text-sm rounded-3xl flex items-center gap-x-2 shadow-sm">
-                        <span>Contact</span>
                     </a>
                 </div>
 
                 <!-- Mobile Menu Button -->
                 <button id="mobile-menu-btn"
-                        class="md:hidden w-10 h-10 flex items-center justify-center text-slate-400 hover:text-white transition-colors">
-                    <i class="fas fa-bars text-xl"></i>
+                        class="md:hidden w-10 h-10 flex items-center justify-center text-gray-300 hover:text-white transition-colors">
+                    <i class="fas fa-bars text-lg"></i>
                 </button>
             </div>
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-slate-900 border-t border-slate-800 px-6 py-4">
-            <div class="flex flex-col gap-y-1 text-sm">
-                <a href="#about" class="py-3 px-4 hover:bg-slate-800 rounded-2xl text-slate-300">About</a>
-                <a href="#projects" class="py-3 px-4 hover:bg-slate-800 rounded-2xl text-slate-300">Projects</a>
-                <a href="#articles" class="py-3 px-4 hover:bg-slate-800 rounded-2xl text-slate-300">Articles</a>
-                <a href="#learning" class="py-3 px-4 hover:bg-slate-800 rounded-2xl text-slate-300">Learning</a>
-                <a href="#resume" class="py-3 px-4 hover:bg-slate-800 rounded-2xl text-slate-300">CV</a>
-                <div class="h-px bg-slate-800 my-2"></div>
-                <div class="flex gap-x-2 px-4">
-                    <a href="https://github.com/danielcieslak" target="_blank" class="flex-1 text-center py-3 bg-slate-800 hover:bg-slate-700 rounded-3xl text-sm font-medium">GitHub</a>
-                    <a href="https://linkedin.com/in/cieslakdaniel" target="_blank" class="flex-1 text-center py-3 bg-slate-800 hover:bg-slate-700 rounded-3xl text-sm font-medium">LinkedIn</a>
+        <div id="mobile-menu" class="hidden md:hidden px-6 py-4 bg-[#16293f]">
+            <div class="flex flex-col gap-y-1 text-sm text-gray-300">
+                <a href="#about" class="py-3">About</a>
+                <a href="#projects" class="py-3">Projects</a>
+                <a href="#articles" class="py-3">Articles</a>
+                <a href="#learning" class="py-3">Learning</a>
+                <a href="#resume" class="py-3">CV</a>
+                <a href="#contact" class="py-3">Contact</a>
+                <div class="h-px bg-white/10 my-2"></div>
+                <div class="flex gap-x-6 py-2">
+                    <a href="https://github.com/danielcieslak" target="_blank" class="text-gray-300">GitHub</a>
+                    <a href="https://linkedin.com/in/cieslakdaniel" target="_blank" class="text-gray-300">LinkedIn</a>
                 </div>
-                <a href="#contact" class="mt-2 mx-4 text-center py-3 bg-white text-slate-950 font-semibold rounded-3xl">Get in touch</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <header class="max-w-screen-xl mx-auto px-6 pt-16 pb-20">
-        <div class="grid md:grid-cols-12 gap-y-12 items-center">
-            <div class="md:col-span-7 lg:pr-12">
-                <div class="inline-flex items-center gap-x-2 px-4 py-1.5 bg-slate-900 border border-slate-800 rounded-3xl mb-6">
-                    <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
-                    <span class="text-emerald-400 text-sm font-medium tracking-wide">Open to opportunities in Data Analytics &amp; Data Science</span>
+    <header class="max-w-4xl mx-auto px-6 pt-16 pb-24">
+        <div class="flex flex-col md:flex-row md:items-center gap-12">
+            <div class="flex-1">
+                <div class="flex items-center gap-2 mb-5">
+                    <span class="kicker-bar"></span>
+                    <p class="section-label">Data Analytics Engineer</p>
                 </div>
 
-                <h1 class="font-display text-6xl md:text-7xl leading-[1.05] tracking-tighter font-semibold">
-                    Hi, I'm <span class="gradient-text">Daniel Cieslak</span>.<br>
-                    Data Analytics<br>Engineer.
+                <h1 class="text-5xl md:text-6xl font-medium tracking-tight leading-[1.1] text-gray-900">
+                    Daniel Cieslak.
                 </h1>
 
-                <p class="mt-6 max-w-lg text-xl text-slate-400 leading-relaxed">
+                <p class="mt-6 max-w-lg text-lg text-gray-500 leading-relaxed">
                     I build the data pipelines, dashboards, and reporting models that turn raw operational
                     data into decisions — currently supporting a workforce of 11,500+ at Tesla, with a
                     quantitative foundation in engineering, probability, and statistics.
                 </p>
 
-                <div class="mt-8 flex flex-wrap gap-4">
-                    <a href="#projects" 
-                       class="inline-flex items-center justify-center gap-x-3 px-8 h-14 bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 transition-all text-white font-semibold rounded-3xl text-base shadow-lg shadow-indigo-950/50">
-                        <span>Explore my projects</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </a>
-                    
-                    <a href="#resume" 
-                       class="inline-flex items-center justify-center gap-x-3 px-7 h-14 border border-slate-700 hover:bg-slate-900 transition-all font-semibold rounded-3xl text-base">
-                        <i class="fas fa-download mr-2"></i>
-                        <span>Download CV</span>
-                    </a>
+                <div class="mt-8 flex flex-wrap gap-x-8 gap-y-3 text-sm">
+                    <a href="#projects" class="link-underline font-medium text-gray-900">Explore my projects</a>
+                    <a href="#resume" class="link-underline text-gray-500">Download CV</a>
                 </div>
 
-                <div class="mt-8 flex items-center gap-x-8 text-sm">
-                    <div class="flex items-center gap-x-2 text-slate-400">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>Berlin, Germany • Open to relocation</span>
-                    </div>
+                <div class="mt-10 text-sm text-gray-400">
+                    Berlin, Germany — open to relocation · Open to opportunities in Data Analytics &amp; Data Science
                 </div>
             </div>
 
             <!-- Hero Visual -->
-            <div class="md:col-span-5 flex justify-center md:justify-end">
-                <div class="relative">
-                    <div class="w-72 h-72 md:w-80 md:h-80 rounded-[3.5rem] overflow-hidden border-4 border-slate-800 shadow-2xl shadow-black/40">
-                        <img src="profile-photo.jpg"
-                             alt="Daniel Cieslak professional portrait"
-                             class="w-full h-full object-cover grayscale-[0.15]">
-                    </div>
-                    <!-- Accent ring -->
-                    <div class="absolute -inset-1.5 rounded-[3.75rem] border border-indigo-500/20 pointer-events-none"></div>
-                    
-                    <!-- Floating badge -->
-                    <div class="absolute -bottom-3 -right-3 bg-slate-900 border border-slate-700 rounded-2xl px-5 py-3 shadow-xl flex items-center gap-x-3">
-                        <div>
-                            <div class="text-xs text-slate-400">Currently building</div>
-                            <div class="font-semibold text-emerald-400">Workforce analytics @ Tesla</div>
-                        </div>
-                    </div>
+            <div class="flex-shrink-0">
+                <div class="w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden ring-2 ring-[#1E3A5F]/25">
+                    <img src="profile-photo.jpg"
+                         alt="Daniel Cieslak professional portrait"
+                         class="photo w-full h-full object-cover">
                 </div>
+            </div>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-y-8">
+            <div>
+                <div class="text-2xl font-medium text-gray-900 tabular-nums">11,500+</div>
+                <div class="text-sm text-gray-400 mt-1">Employees covered by dashboards</div>
+            </div>
+            <div>
+                <div class="text-2xl font-medium text-gray-900 tabular-nums">90%+</div>
+                <div class="text-sm text-gray-400 mt-1">Manual reporting effort cut</div>
+            </div>
+            <div>
+                <div class="text-2xl font-medium text-gray-900 tabular-nums">4</div>
+                <div class="text-sm text-gray-400 mt-1">Languages spoken</div>
+            </div>
+            <div>
+                <div class="text-2xl font-medium text-gray-900 tabular-nums">3</div>
+                <div class="text-sm text-gray-400 mt-1">Countries lived &amp; studied in</div>
             </div>
         </div>
     </header>
 
-    <!-- Trust / Quick Stats -->
-    <div class="border-y border-slate-800 bg-slate-900/50">
-        <div class="max-w-screen-xl mx-auto px-6 py-8">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-y-8 text-center">
-                <div>
-                    <div class="text-4xl font-semibold tracking-tighter stat-number">11,500+</div>
-                    <div class="text-sm text-slate-400 mt-1">Employees covered by dashboards</div>
-                </div>
-                <div>
-                    <div class="text-4xl font-semibold tracking-tighter stat-number">90%+</div>
-                    <div class="text-sm text-slate-400 mt-1">Manual reporting effort cut</div>
-                </div>
-                <div>
-                    <div class="text-4xl font-semibold tracking-tighter stat-number">4</div>
-                    <div class="text-sm text-slate-400 mt-1">Languages spoken</div>
-                </div>
-                <div>
-                    <div class="text-4xl font-semibold tracking-tighter stat-number">3</div>
-                    <div class="text-sm text-slate-400 mt-1">Countries lived &amp; studied in</div>
-                </div>
-            </div>
-        </div>
+    <!-- Inline nav — sits in normal page flow right after the intro -->
+    <div class="max-w-4xl mx-auto px-6 pt-6 pb-16">
+        <nav id="inline-nav" class="bg-[#1E3A5F] rounded-2xl max-w-2xl mx-auto px-8 py-4 flex flex-wrap items-center justify-center gap-x-8 gap-y-2 text-sm text-gray-300">
+            <a href="#about" class="hover:text-white transition-colors">About</a>
+            <a href="#projects" class="hover:text-white transition-colors">Projects</a>
+            <a href="#articles" class="hover:text-white transition-colors">Articles</a>
+            <a href="#learning" class="hover:text-white transition-colors">Learning</a>
+            <a href="#resume" class="hover:text-white transition-colors">CV</a>
+            <a href="#contact" class="hover:text-white transition-colors">Contact</a>
+        </nav>
     </div>
 
     <!-- About Section -->
-    <section id="about" class="max-w-screen-xl mx-auto px-6 pt-20 pb-16">
-        <div class="max-w-2xl">
-            <span class="text-indigo-400 text-sm font-semibold tracking-[1.5px] uppercase">About me</span>
-            <h2 class="section-header mt-3 tracking-tighter">Turning data into decisions.</h2>
+    <section id="about" class="max-w-4xl mx-auto px-6 py-16">
+        <div class="flex items-center gap-2 mb-3">
+            <span class="kicker-bar"></span>
+            <p class="section-label">About me</p>
         </div>
+        <h2 class="text-3xl font-medium tracking-tight text-gray-900 mb-10">Turning data into decisions.</h2>
 
-        <div class="mt-10 grid md:grid-cols-12 gap-x-12 gap-y-10">
+        <div class="grid md:grid-cols-12 gap-x-12 gap-y-10">
             <!-- Bio -->
-            <div class="md:col-span-7">
-                <div class="prose prose-invert max-w-none text-[15.5px] leading-relaxed text-slate-300">
-                    <p>I'm a Production Engineer with almost two years of professional experience as a Data Analytics Engineer at Tesla, where I build the data pipelines, dashboards, and reporting models that inform decisions for a workforce of 11,500+.</p>
+            <div class="md:col-span-7 text-[15.5px] leading-relaxed text-gray-600 space-y-4">
+                <p>I'm a Production Engineer with almost two years of professional experience as a Data Analytics Engineer at Tesla, where I build the data pipelines, dashboards, and reporting models that inform decisions for a workforce of 11,500+.</p>
 
-                    <p class="mt-4">My engineering training gave me a solid quantitative foundation in mathematics, probability, and statistics, and my day-to-day work turning raw operational data into reliable, decision-ready analysis has shown me how much further I could take that foundation with rigorous, formal study in statistical methods.</p>
+                <p>My engineering training gave me a solid quantitative foundation in mathematics, probability, and statistics, and my day-to-day work turning raw operational data into reliable, decision-ready analysis has shown me how much further I could take that foundation with rigorous, formal study in statistical methods.</p>
 
-                    <p class="mt-4">I'm continuing to deepen my theoretical grounding in statistics, R, and data science while applying that learning directly in industry — having lived and studied across Brazil, Italy, and Germany.</p>
-                </div>
-                
-                <div class="mt-8">
-                    <a href="#learning" class="inline-flex items-center text-sm font-medium text-indigo-400 hover:text-indigo-300 group">
-                        See what I'm learning right now 
-                        <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition"></i>
-                    </a>
-                </div>
+                <p>I'm continuing to deepen my theoretical grounding in statistics, R, and data science while applying that learning directly in industry — having lived and studied across Brazil, Italy, and Germany.</p>
+
+                <a href="#learning" class="inline-block mt-2 link-underline text-gray-900 text-sm">See what I'm learning right now</a>
             </div>
 
             <!-- Education & Core Info -->
             <div class="md:col-span-5">
-                <div class="bg-slate-900 border border-slate-800 rounded-3xl p-8">
-                    <div class="flex items-center gap-x-4">
-                        <div class="w-9 h-9 bg-indigo-500/10 text-indigo-400 rounded-2xl flex items-center justify-center flex-shrink-0">
-                            <i class="fas fa-graduation-cap text-xl"></i>
-                        </div>
-                        <div>
-                            <div class="font-semibold">B.Sc. Production Engineering</div>
-                            <div class="text-sm text-slate-400">UNINTER, Brazil • 2024</div>
-                        </div>
-                    </div>
+                <div class="font-medium text-gray-900">B.Sc. Production Engineering</div>
+                <div class="text-sm text-gray-400">UNINTER, Brazil · 2024</div>
 
-                    <div class="mt-8 pt-8 border-t border-slate-800">
-                        <div class="text-xs uppercase tracking-widest text-slate-400 mb-3">Core expertise</div>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="skill-badge px-4 py-1.5 text-xs font-medium bg-slate-800 hover:bg-indigo-600 rounded-2xl">SQL</span>
-                            <span class="skill-badge px-4 py-1.5 text-xs font-medium bg-slate-800 hover:bg-indigo-600 rounded-2xl">Python</span>
-                            <span class="skill-badge px-4 py-1.5 text-xs font-medium bg-slate-800 hover:bg-indigo-600 rounded-2xl">TypeScript</span>
-                            <span class="skill-badge px-4 py-1.5 text-xs font-medium bg-slate-800 hover:bg-indigo-600 rounded-2xl">Power BI</span>
-                            <span class="skill-badge px-4 py-1.5 text-xs font-medium bg-slate-800 hover:bg-indigo-600 rounded-2xl">Power Apps</span>
-                            <span class="skill-badge px-4 py-1.5 text-xs font-medium bg-slate-800 hover:bg-indigo-600 rounded-2xl">Tableau</span>
-                            <span class="skill-badge px-4 py-1.5 text-xs font-medium bg-slate-800 hover:bg-indigo-600 rounded-2xl">Salesforce</span>
-                            <span class="skill-badge px-4 py-1.5 text-xs font-medium bg-slate-800 hover:bg-indigo-600 rounded-2xl">MongoDB / PostgreSQL</span>
-                        </div>
-                    </div>
+                <div class="mt-8 pt-8">
+                    <div class="section-label mb-3">Core expertise</div>
+                    <p class="text-sm text-gray-600 leading-relaxed">
+                        SQL · Python · TypeScript · Power BI · Power Apps · Tableau · Salesforce · MongoDB / PostgreSQL
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="bg-slate-900 py-16 border-y border-slate-800">
-        <div class="max-w-screen-xl mx-auto px-6">
-            <div class="flex items-end justify-between mb-10">
+    <section id="projects" class="py-16">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="flex items-end justify-between mb-12">
                 <div>
-                    <span class="text-indigo-400 text-sm font-semibold tracking-[1.5px] uppercase">Selected work</span>
-                    <h2 class="section-header tracking-tighter mt-2">Projects &amp; Web Apps</h2>
+                    <div class="flex items-center gap-2 mb-3">
+                        <span class="kicker-bar"></span>
+                        <p class="section-label">Selected work</p>
+                    </div>
+                    <h2 class="text-3xl font-medium tracking-tight text-gray-900">Projects &amp; Web Apps</h2>
                 </div>
-                <a href="https://github.com/danielcieslak?tab=repositories" target="_blank" 
-                   class="hidden md:flex items-center text-sm font-medium text-slate-400 hover:text-white transition-colors">
-                    View all on GitHub <i class="fas fa-external-link-alt ml-2 text-xs"></i>
+                <a href="https://github.com/danielcieslak?tab=repositories" target="_blank"
+                   class="hidden md:block text-sm link-underline text-gray-500">
+                    View all on GitHub
                 </a>
             </div>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                
+            <div class="grid md:grid-cols-2 gap-x-10 gap-y-14">
+
                 <!-- Project 1: placeholder -->
-                <div class="project-card group bg-slate-950 border border-slate-800 rounded-3xl overflow-hidden flex flex-col">
-                    <div class="h-2 bg-gradient-to-r from-indigo-500 to-violet-500"></div>
-                    <div class="p-7 flex-1 flex flex-col">
-                        <div class="flex items-center justify-between">
-                            <span class="px-3 py-1 text-[10px] font-mono tracking-widest bg-emerald-950 text-emerald-400 rounded-2xl">[CATEGORY] • [STATUS]</span>
+                <div class="group">
+                    <div class="section-label mb-3">[Category] · [Status]</div>
+                    <h3 class="text-xl font-medium text-gray-900 group-hover:text-gray-500 transition-colors">[Project 1 Title]</h3>
+                    <p class="mt-3 text-[15px] text-gray-500 leading-relaxed">[Add a short description of this project — e.g. a workforce dashboard, a Power Apps automation, or a data-correction tool.]</p>
+
+                    <div class="mt-4 text-xs text-gray-400">[Tech] · [Tech] · [Tech]</div>
+
+                    <div class="mt-5 flex items-center justify-between text-sm">
+                        <div class="text-gray-400">
+                            <span class="font-medium text-gray-900">[XX%]</span> [impact metric]
                         </div>
-
-                        <h3 class="font-display text-2xl tracking-tight mt-5 mb-3 leading-none">[Project 1 Title]</h3>
-
-                        <p class="text-slate-400 text-[15px] flex-1">[Add a short description of this project — e.g. a workforce dashboard, a Power Apps automation, or a data-correction tool.]</p>
-
-                        <div class="mt-auto pt-6">
-                            <div class="flex flex-wrap gap-1.5 mb-5">
-                                <span class="text-xs px-3 py-1 bg-slate-800 rounded-xl font-medium">[Tech]</span>
-                                <span class="text-xs px-3 py-1 bg-slate-800 rounded-xl font-medium">[Tech]</span>
-                                <span class="text-xs px-3 py-1 bg-slate-800 rounded-xl font-medium">[Tech]</span>
-                            </div>
-
-                            <div class="flex items-center justify-between text-sm">
-                                <div>
-                                    <span class="font-semibold text-emerald-400">[XX%]</span>
-                                    <span class="text-xs text-slate-400"> [impact metric]</span>
-                                </div>
-                                <div class="flex gap-x-2">
-                                    <a href="#" target="_blank" class="px-4 py-2 text-xs font-semibold border border-slate-700 hover:bg-slate-800 rounded-2xl flex items-center gap-x-1.5 transition">
-                                        <i class="fab fa-github"></i> <span>Code</span>
-                                    </a>
-                                    <a href="#" target="_blank" onclick="showProjectModal(0)"
-                                       class="px-4 py-2 text-xs font-semibold bg-white text-slate-950 hover:bg-slate-200 rounded-2xl flex items-center gap-x-1.5 transition">
-                                        <span>Live Demo</span>
-                                    </a>
-                                </div>
-                            </div>
+                        <div class="flex gap-x-5">
+                            <a href="#" target="_blank" class="link-underline text-gray-500">Code</a>
+                            <a href="#" target="_blank" onclick="showProjectModal(0)" class="link-underline font-medium text-gray-900">Live Demo</a>
                         </div>
                     </div>
                 </div>
 
                 <!-- Project 2: placeholder -->
-                <div class="project-card group bg-slate-950 border border-slate-800 rounded-3xl overflow-hidden flex flex-col">
-                    <div class="h-2 bg-gradient-to-r from-violet-500 to-fuchsia-500"></div>
-                    <div class="p-7 flex-1 flex flex-col">
-                        <div class="flex items-center justify-between">
-                            <span class="px-3 py-1 text-[10px] font-mono tracking-widest bg-violet-950 text-violet-400 rounded-2xl">[CATEGORY] • [STATUS]</span>
+                <div class="group">
+                    <div class="section-label mb-3">[Category] · [Status]</div>
+                    <h3 class="text-xl font-medium text-gray-900 group-hover:text-gray-500 transition-colors">[Project 2 Title]</h3>
+                    <p class="mt-3 text-[15px] text-gray-500 leading-relaxed">[Add a short description of this project.]</p>
+
+                    <div class="mt-4 text-xs text-gray-400">[Tech] · [Tech] · [Tech]</div>
+
+                    <div class="mt-5 flex items-center justify-between text-sm">
+                        <div class="text-gray-400">
+                            <span class="font-medium text-gray-900">[XX%]</span> [impact metric]
                         </div>
-
-                        <h3 class="font-display text-2xl tracking-tight mt-5 mb-3 leading-none">[Project 2 Title]</h3>
-
-                        <p class="text-slate-400 text-[15px] flex-1">[Add a short description of this project.]</p>
-
-                        <div class="mt-auto pt-6">
-                            <div class="flex flex-wrap gap-1.5 mb-5">
-                                <span class="text-xs px-3 py-1 bg-slate-800 rounded-xl font-medium">[Tech]</span>
-                                <span class="text-xs px-3 py-1 bg-slate-800 rounded-xl font-medium">[Tech]</span>
-                                <span class="text-xs px-3 py-1 bg-slate-800 rounded-xl font-medium">[Tech]</span>
-                            </div>
-
-                            <div class="flex items-center justify-between text-sm">
-                                <div>
-                                    <span class="font-semibold text-emerald-400">[XX%]</span>
-                                    <span class="text-xs text-slate-400"> [impact metric]</span>
-                                </div>
-                                <div class="flex gap-x-2">
-                                    <a href="#" target="_blank" class="px-4 py-2 text-xs font-semibold border border-slate-700 hover:bg-slate-800 rounded-2xl flex items-center gap-x-1.5 transition">
-                                        <i class="fab fa-github"></i> <span>Code</span>
-                                    </a>
-                                    <button onclick="showProjectModal(1)"
-                                       class="px-4 py-2 text-xs font-semibold bg-white text-slate-950 hover:bg-slate-200 rounded-2xl flex items-center gap-x-1.5 transition">
-                                        <span>Case Study</span>
-                                    </button>
-                                </div>
-                            </div>
+                        <div class="flex gap-x-5">
+                            <a href="#" target="_blank" class="link-underline text-gray-500">Code</a>
+                            <button onclick="showProjectModal(1)" class="link-underline font-medium text-gray-900">Case Study</button>
                         </div>
                     </div>
                 </div>
 
                 <!-- Project 3: placeholder -->
-                <div class="project-card group bg-slate-950 border border-slate-800 rounded-3xl overflow-hidden flex flex-col">
-                    <div class="h-2 bg-gradient-to-r from-amber-500 to-orange-500"></div>
-                    <div class="p-7 flex-1 flex flex-col">
-                        <div class="flex items-center justify-between">
-                            <span class="px-3 py-1 text-[10px] font-mono tracking-widest bg-amber-950 text-amber-400 rounded-2xl">[CATEGORY] • [STATUS]</span>
+                <div class="group">
+                    <div class="section-label mb-3">[Category] · [Status]</div>
+                    <h3 class="text-xl font-medium text-gray-900 group-hover:text-gray-500 transition-colors">[Project 3 Title]</h3>
+                    <p class="mt-3 text-[15px] text-gray-500 leading-relaxed">[Add a short description of this project.]</p>
+
+                    <div class="mt-4 text-xs text-gray-400">[Tech] · [Tech] · [Tech]</div>
+
+                    <div class="mt-5 flex items-center justify-between text-sm">
+                        <div class="text-gray-400">
+                            <span class="font-medium text-gray-900">[XX%]</span> [impact metric]
                         </div>
-
-                        <h3 class="font-display text-2xl tracking-tight mt-5 mb-3 leading-none">[Project 3 Title]</h3>
-
-                        <p class="text-slate-400 text-[15px] flex-1">[Add a short description of this project.]</p>
-
-                        <div class="mt-auto pt-6">
-                            <div class="flex flex-wrap gap-1.5 mb-5">
-                                <span class="text-xs px-3 py-1 bg-slate-800 rounded-xl font-medium">[Tech]</span>
-                                <span class="text-xs px-3 py-1 bg-slate-800 rounded-xl font-medium">[Tech]</span>
-                                <span class="text-xs px-3 py-1 bg-slate-800 rounded-xl font-medium">[Tech]</span>
-                            </div>
-
-                            <div class="flex items-center justify-between text-sm">
-                                <div>
-                                    <span class="font-semibold text-emerald-400">[XX%]</span>
-                                    <span class="text-xs text-slate-400"> [impact metric]</span>
-                                </div>
-                                <div class="flex gap-x-2">
-                                    <a href="#" target="_blank" class="px-4 py-2 text-xs font-semibold border border-slate-700 hover:bg-slate-800 rounded-2xl flex items-center gap-x-1.5 transition">
-                                        <i class="fab fa-github"></i> <span>Code</span>
-                                    </a>
-                                    <button onclick="showProjectModal(2)"
-                                       class="px-4 py-2 text-xs font-semibold bg-white text-slate-950 hover:bg-slate-200 rounded-2xl flex items-center gap-x-1.5 transition">
-                                        <span>Live Demo</span>
-                                    </button>
-                                </div>
-                            </div>
+                        <div class="flex gap-x-5">
+                            <a href="#" target="_blank" class="link-underline text-gray-500">Code</a>
+                            <button onclick="showProjectModal(2)" class="link-underline font-medium text-gray-900">Live Demo</button>
                         </div>
                     </div>
                 </div>
             </div>
-            
-            <p class="text-center text-xs text-slate-400 mt-8">More on my <a href="https://github.com/danielcieslak" class="underline hover:text-slate-300">GitHub</a>. [Replace the placeholders above with your real projects.]</p>
+
+            <p class="text-center text-xs text-gray-400 mt-14">More on my <a href="https://github.com/danielcieslak" class="link-underline text-gray-500">GitHub</a>. [Replace the placeholders above with your real projects.]</p>
         </div>
     </section>
 
     <!-- Articles Section -->
-    <section id="articles" class="max-w-screen-xl mx-auto px-6 py-20">
+    <section id="articles" class="max-w-4xl mx-auto px-6 py-16">
         <div class="flex items-end justify-between mb-10">
             <div>
-                <span class="text-indigo-400 text-sm font-semibold tracking-[1.5px] uppercase">Thought leadership</span>
-                <h2 class="section-header tracking-tighter mt-1">Articles &amp; Insights</h2>
+                <div class="flex items-center gap-2 mb-3">
+                    <span class="kicker-bar"></span>
+                    <p class="section-label">Thought leadership</p>
+                </div>
+                <h2 class="text-3xl font-medium tracking-tight text-gray-900">Articles &amp; Insights</h2>
             </div>
-            <a href="#" target="_blank" class="text-sm font-medium hidden md:block text-slate-400 hover:text-white">Read all on [Medium/LinkedIn] →</a>
+            <a href="#" target="_blank" class="hidden md:block text-sm link-underline text-gray-500">Read all on [Medium/LinkedIn]</a>
         </div>
 
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- Article cards: placeholders -->
-            <a href="#" class="group block bg-slate-900 border border-slate-800 rounded-3xl p-7 hover:border-slate-700 transition-colors">
-                <div class="flex items-center gap-x-3 text-xs">
-                    <span class="font-mono text-indigo-400">[MONTH YEAR]</span>
-                    <span class="text-slate-500">•</span>
-                    <span class="text-emerald-400 font-medium">[X] min read</span>
+        <div class="space-y-10">
+            <!-- Article rows: placeholders -->
+            <a href="#" class="group flex flex-col md:flex-row md:items-baseline md:justify-between gap-2">
+                <div class="md:max-w-lg">
+                    <h3 class="font-medium text-gray-900 group-hover:text-gray-500 transition-colors">[Article 1 Title]</h3>
+                    <p class="mt-1.5 text-sm text-gray-500">[Short summary of this article.]</p>
                 </div>
-                <h3 class="mt-4 font-display text-xl tracking-tight leading-snug group-hover:text-indigo-400 transition">[Article 1 Title]</h3>
-                <p class="mt-3 text-sm text-slate-400 line-clamp-3">[Short summary of this article.]</p>
-                <div class="mt-5 flex items-center text-xs text-slate-400">
-                    <span>Read on [Platform]</span> <i class="fas fa-arrow-up-right-from-square ml-2 text-[10px]"></i>
-                </div>
+                <div class="text-xs text-gray-400 whitespace-nowrap md:pl-8">[MONTH YEAR] · [X] min read</div>
             </a>
 
-            <a href="#" class="group block bg-slate-900 border border-slate-800 rounded-3xl p-7 hover:border-slate-700 transition-colors">
-                <div class="flex items-center gap-x-3 text-xs">
-                    <span class="font-mono text-indigo-400">[MONTH YEAR]</span>
-                    <span class="text-slate-500">•</span>
-                    <span class="text-emerald-400 font-medium">[X] min read</span>
+            <a href="#" class="group flex flex-col md:flex-row md:items-baseline md:justify-between gap-2">
+                <div class="md:max-w-lg">
+                    <h3 class="font-medium text-gray-900 group-hover:text-gray-500 transition-colors">[Article 2 Title]</h3>
+                    <p class="mt-1.5 text-sm text-gray-500">[Short summary of this article.]</p>
                 </div>
-                <h3 class="mt-4 font-display text-xl tracking-tight leading-snug group-hover:text-indigo-400 transition">[Article 2 Title]</h3>
-                <p class="mt-3 text-sm text-slate-400 line-clamp-3">[Short summary of this article.]</p>
-                <div class="mt-5 flex items-center text-xs text-slate-400">
-                    <span>Read on [Platform]</span> <i class="fas fa-arrow-up-right-from-square ml-2 text-[10px]"></i>
-                </div>
+                <div class="text-xs text-gray-400 whitespace-nowrap md:pl-8">[MONTH YEAR] · [X] min read</div>
             </a>
 
-            <a href="#" class="group block bg-slate-900 border border-slate-800 rounded-3xl p-7 hover:border-slate-700 transition-colors">
-                <div class="flex items-center gap-x-3 text-xs">
-                    <span class="font-mono text-indigo-400">[MONTH YEAR]</span>
-                    <span class="text-slate-500">•</span>
-                    <span class="text-emerald-400 font-medium">[X] min read</span>
+            <a href="#" class="group flex flex-col md:flex-row md:items-baseline md:justify-between gap-2">
+                <div class="md:max-w-lg">
+                    <h3 class="font-medium text-gray-900 group-hover:text-gray-500 transition-colors">[Article 3 Title]</h3>
+                    <p class="mt-1.5 text-sm text-gray-500">[Short summary of this article.]</p>
                 </div>
-                <h3 class="mt-4 font-display text-xl tracking-tight leading-snug group-hover:text-indigo-400 transition">[Article 3 Title]</h3>
-                <p class="mt-3 text-sm text-slate-400 line-clamp-3">[Short summary of this article.]</p>
-                <div class="mt-5 flex items-center text-xs text-slate-400">
-                    <span>Read full post</span> <i class="fas fa-arrow-up-right-from-square ml-2 text-[10px]"></i>
-                </div>
+                <div class="text-xs text-gray-400 whitespace-nowrap md:pl-8">[MONTH YEAR] · [X] min read</div>
             </a>
         </div>
     </section>
 
     <!-- Currently Learning -->
-    <section id="learning" class="bg-slate-900 border-y border-slate-800 py-16">
-        <div class="max-w-screen-xl mx-auto px-6">
-            <div class="max-w-2xl mb-10">
-                <span class="text-indigo-400 text-sm font-semibold tracking-[1.5px] uppercase">Growth mindset</span>
-                <h2 class="section-header tracking-tighter mt-2">What I'm learning right now</h2>
-                <p class="mt-3 text-slate-400">[Short intro to what you're currently exploring and why.]</p>
+    <section id="learning" class="py-16">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="max-w-2xl mb-12">
+                <div class="flex items-center gap-2 mb-3">
+                    <span class="kicker-bar"></span>
+                    <p class="section-label">Growth mindset</p>
+                </div>
+                <h2 class="text-3xl font-medium tracking-tight text-gray-900">What I'm learning right now</h2>
+                <p class="mt-3 text-gray-500">[Short intro to what you're currently exploring and why.]</p>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-6">
-                <div class="bg-slate-950 border border-slate-800 rounded-3xl p-7">
-                    <div class="flex items-center gap-x-4">
-                        <div class="text-3xl">🧠</div>
-                        <div>
-                            <div class="font-semibold">[Topic 1]</div>
-                            <div class="text-xs text-emerald-400 mt-0.5">[STATUS]</div>
-                        </div>
-                    </div>
-                    <p class="mt-5 text-sm text-slate-300">[What you're learning and why it matters to you.]</p>
-                    <div class="mt-4 text-xs text-slate-400">Resources: [list resources]</div>
+            <div class="grid md:grid-cols-3 gap-10">
+                <div>
+                    <div class="font-medium text-gray-900">[Topic 1]</div>
+                    <div class="text-xs text-gray-400 mt-1">[STATUS]</div>
+                    <p class="mt-4 text-sm text-gray-600 leading-relaxed">[What you're learning and why it matters to you.]</p>
+                    <div class="mt-3 text-xs text-gray-400">Resources: [list resources]</div>
                 </div>
 
-                <div class="bg-slate-950 border border-slate-800 rounded-3xl p-7">
-                    <div class="flex items-center gap-x-4">
-                        <div class="text-3xl">⚙️</div>
-                        <div>
-                            <div class="font-semibold">[Topic 2]</div>
-                            <div class="text-xs text-emerald-400 mt-0.5">[STATUS]</div>
-                        </div>
-                    </div>
-                    <p class="mt-5 text-sm text-slate-300">[What you're learning and why it matters to you.]</p>
-                    <div class="mt-4 text-xs text-slate-400">Current focus: [short note]</div>
+                <div>
+                    <div class="font-medium text-gray-900">[Topic 2]</div>
+                    <div class="text-xs text-gray-400 mt-1">[STATUS]</div>
+                    <p class="mt-4 text-sm text-gray-600 leading-relaxed">[What you're learning and why it matters to you.]</p>
+                    <div class="mt-3 text-xs text-gray-400">Current focus: [short note]</div>
                 </div>
 
-                <div class="bg-slate-950 border border-slate-800 rounded-3xl p-7">
-                    <div class="flex items-center gap-x-4">
-                        <div class="text-3xl">🛡️</div>
-                        <div>
-                            <div class="font-semibold">[Topic 3]</div>
-                            <div class="text-xs text-emerald-400 mt-0.5">[STATUS]</div>
-                        </div>
-                    </div>
-                    <p class="mt-5 text-sm text-slate-300">[What you're learning and why it matters to you.]</p>
-                    <div class="mt-4 text-xs text-slate-400">Reading: [book / papers]</div>
+                <div>
+                    <div class="font-medium text-gray-900">[Topic 3]</div>
+                    <div class="text-xs text-gray-400 mt-1">[STATUS]</div>
+                    <p class="mt-4 text-sm text-gray-600 leading-relaxed">[What you're learning and why it matters to you.]</p>
+                    <div class="mt-3 text-xs text-gray-400">Reading: [book / papers]</div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Resume / CV Section -->
-    <section id="resume" class="max-w-screen-xl mx-auto px-6 py-20">
-        <div class="max-w-3xl mx-auto">
-            <div class="text-center mb-10">
-                <span class="text-indigo-400 text-sm font-semibold tracking-[1.5px] uppercase">Professional background</span>
-                <h2 class="section-header tracking-tighter mt-3">Curriculum Vitae</h2>
-                <p class="mt-3 text-slate-400">A summary of my experience, education, and impact. Full detailed CV available for download.</p>
+    <section id="resume" class="py-16">
+        <div class="max-w-3xl mx-auto px-6">
+            <div class="mb-12">
+                <div class="flex items-center gap-2 mb-3">
+                    <span class="kicker-bar"></span>
+                    <p class="section-label">Professional background</p>
+                </div>
+                <h2 class="text-3xl font-medium tracking-tight text-gray-900">Curriculum Vitae</h2>
+                <p class="mt-3 text-gray-500">A summary of my experience, education, and impact. Full detailed CV available for download.</p>
             </div>
 
-            <!-- Quick CV Preview -->
-            <div class="bg-slate-900 border border-slate-800 rounded-3xl p-8 md:p-10">
-                <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-y-4 mb-8">
-                    <div>
-                        <div class="font-display text-3xl tracking-tighter">Daniel Moritz Cieslak</div>
-                        <div class="text-indigo-400 font-medium">Data Analytics Engineer | Production Engineer</div>
+            <!-- CV Header -->
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-y-4 pb-8">
+                <div>
+                    <div class="text-2xl font-medium tracking-tight text-gray-900">Daniel Moritz Cieslak</div>
+                    <div class="text-gray-500 text-sm mt-1">Data Analytics Engineer | Production Engineer</div>
+                </div>
+                <a href="cv.pdf" download class="link-underline text-sm font-medium text-gray-900">
+                    Download full PDF CV
+                </a>
+            </div>
+
+            <!-- Experience Timeline -->
+            <div class="space-y-10">
+                <div>
+                    <div class="flex flex-col md:flex-row md:items-baseline md:justify-between gap-1">
+                        <div>
+                            <span class="font-medium text-gray-900">Associate Data Analytics Engineer</span>
+                            <span class="text-gray-500">— Tesla, Berlin</span>
+                        </div>
+                        <span class="text-xs text-gray-400 whitespace-nowrap">Dec 2025 — Present</span>
                     </div>
-                    <a href="cv.pdf" download
-                       class="inline-flex items-center justify-center gap-x-3 px-7 h-12 bg-white hover:bg-slate-100 active:bg-slate-200 transition font-semibold text-slate-950 rounded-3xl text-sm shadow">
-                        <i class="fas fa-download"></i>
-                        <span>Download full PDF CV</span>
-                    </a>
+                    <ul class="mt-3 text-sm text-gray-600 space-y-1.5">
+                        <li><span class="text-gray-400">—</span> Build and maintain executive dashboards and reporting pipelines (headcount, turnover, workforce distribution) using SQL, Python, and ZipLabs for a workforce of 11,500+.</li>
+                        <li><span class="text-gray-400">—</span> Partner with HR, operations, and business stakeholders to translate ambiguous questions into defined analytics solutions and deliver actionable recommendations.</li>
+                        <li><span class="text-gray-400">—</span> Built and rolled out Power Apps automations that replaced manual reporting workflows, cutting manual effort by 90%+.</li>
+                    </ul>
                 </div>
 
-                <!-- Experience Timeline -->
-                <div class="space-y-8">
-                    <div>
-                        <div class="flex items-baseline justify-between">
-                            <div>
-                                <span class="font-semibold">Associate Data Analytics Engineer</span>
-                                <span class="text-slate-400">— Tesla, Berlin</span>
-                            </div>
-                            <span class="text-xs text-slate-400 font-mono">Dec 2025 — Present</span>
+                <div>
+                    <div class="flex flex-col md:flex-row md:items-baseline md:justify-between gap-1">
+                        <div>
+                            <span class="font-medium text-gray-900">Intern Data Analytics Engineer</span>
+                            <span class="text-gray-500">— Tesla, Berlin</span>
                         </div>
-                        <ul class="mt-3 text-sm text-slate-300 space-y-1.5 pl-1">
-                            <li class="flex gap-2"><span class="text-indigo-400 mt-1.5">•</span> Build and maintain executive dashboards and reporting pipelines (headcount, turnover, workforce distribution) using SQL, Python, and ZipLabs for a workforce of 11,500+.</li>
-                            <li class="flex gap-2"><span class="text-indigo-400 mt-1.5">•</span> Partner with HR, operations, and business stakeholders to translate ambiguous questions into defined analytics solutions and deliver actionable recommendations.</li>
-                            <li class="flex gap-2"><span class="text-indigo-400 mt-1.5">•</span> Built and rolled out Power Apps automations that replaced manual reporting workflows, cutting manual effort by 90%+.</li>
-                        </ul>
+                        <span class="text-xs text-gray-400 whitespace-nowrap">Dec 2024 — Nov 2025</span>
                     </div>
-
-                    <div>
-                        <div class="flex items-baseline justify-between">
-                            <div>
-                                <span class="font-semibold">Intern Data Analytics Engineer</span>
-                                <span class="text-slate-400">— Tesla, Berlin</span>
-                            </div>
-                            <span class="text-xs text-slate-400 font-mono">Dec 2024 — Nov 2025</span>
-                        </div>
-                        <ul class="mt-3 text-sm text-slate-300 space-y-1.5 pl-1">
-                            <li class="flex gap-2"><span class="text-indigo-400 mt-1.5">•</span> Joined Tesla's People Analytics team, building foundational dashboards and reporting workflows before being promoted to Associate.</li>
-                        </ul>
-                    </div>
-
-                    <div>
-                        <div class="flex items-baseline justify-between">
-                            <div>
-                                <span class="font-semibold">Data Analyst, Technology Transfer Office</span>
-                                <span class="text-slate-400">— Politecnico di Milano</span>
-                            </div>
-                            <span class="text-xs text-slate-400 font-mono">Jun 2023 — Feb 2024</span>
-                        </div>
-                        <ul class="mt-3 text-sm text-slate-300 space-y-1.5 pl-1">
-                            <li class="flex gap-2"><span class="text-indigo-400 mt-1.5">•</span> Managed and analysed innovation and intellectual-property datasets, redesigning data collection to improve quality and reporting efficiency.</li>
-                            <li class="flex gap-2"><span class="text-indigo-400 mt-1.5">•</span> Built automated reports and dashboards in Salesforce and Excel, increasing stakeholder visibility into KPIs.</li>
-                        </ul>
-                    </div>
-
-                    <div>
-                        <div class="flex items-baseline justify-between">
-                            <div>
-                                <span class="font-semibold">Data Analytics Manager</span>
-                                <span class="text-slate-400">— BRASA, Brazilian Student Association</span>
-                            </div>
-                            <span class="text-xs text-slate-400 font-mono">Dec 2022 — Feb 2024</span>
-                        </div>
-                        <ul class="mt-3 text-sm text-slate-300 space-y-1.5 pl-1">
-                            <li class="flex gap-2"><span class="text-indigo-400 mt-1.5">•</span> Built dashboards in Tableau and managed a MongoDB/PostgreSQL database to support the executive board's decision-making.</li>
-                            <li class="flex gap-2"><span class="text-indigo-400 mt-1.5">•</span> Ran financial analysis and complex SQL queries, and automated manual reporting tasks with Python.</li>
-                        </ul>
-                    </div>
+                    <ul class="mt-3 text-sm text-gray-600 space-y-1.5">
+                        <li><span class="text-gray-400">—</span> Joined Tesla's People Analytics team, building foundational dashboards and reporting workflows before being promoted to Associate.</li>
+                    </ul>
                 </div>
 
-                <div class="mt-10 pt-8 border-t border-slate-800 grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6 text-sm">
-                    <div>
-                        <div class="font-medium text-xs tracking-widest text-slate-400 mb-2">EDUCATION</div>
-                        <div class="font-semibold">B.Sc. Production Engineering</div>
-                        <div class="text-xs text-slate-400">UNINTER, Curitiba, Brazil • 2024</div>
-                        <div class="mt-1 text-xs">Also: Higher Technologist Degree in Industrial Production Management, UNINTER (2021)</div>
-                    </div>
-                    <div>
-                        <div class="font-medium text-xs tracking-widest text-slate-400 mb-2">CERTIFICATIONS &amp; LANGUAGES</div>
-                        <div class="space-y-1 text-xs">
-                            <div>• IBM Data Science Professional Certificate (2021)</div>
-                            <div>• Google Data Analytics Professional Certificate (2024)</div>
-                            <div>• Portuguese (native), English &amp; Italian (full professional), German (elementary)</div>
+                <div>
+                    <div class="flex flex-col md:flex-row md:items-baseline md:justify-between gap-1">
+                        <div>
+                            <span class="font-medium text-gray-900">Data Analyst, Technology Transfer Office</span>
+                            <span class="text-gray-500">— Politecnico di Milano</span>
                         </div>
+                        <span class="text-xs text-gray-400 whitespace-nowrap">Jun 2023 — Feb 2024</span>
                     </div>
+                    <ul class="mt-3 text-sm text-gray-600 space-y-1.5">
+                        <li><span class="text-gray-400">—</span> Managed and analysed innovation and intellectual-property datasets, redesigning data collection to improve quality and reporting efficiency.</li>
+                        <li><span class="text-gray-400">—</span> Built automated reports and dashboards in Salesforce and Excel, increasing stakeholder visibility into KPIs.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="flex flex-col md:flex-row md:items-baseline md:justify-between gap-1">
+                        <div>
+                            <span class="font-medium text-gray-900">Data Analytics Manager</span>
+                            <span class="text-gray-500">— BRASA, Brazilian Student Association</span>
+                        </div>
+                        <span class="text-xs text-gray-400 whitespace-nowrap">Dec 2022 — Feb 2024</span>
+                    </div>
+                    <ul class="mt-3 text-sm text-gray-600 space-y-1.5">
+                        <li><span class="text-gray-400">—</span> Built dashboards in Tableau and managed a MongoDB/PostgreSQL database to support the executive board's decision-making.</li>
+                        <li><span class="text-gray-400">—</span> Ran financial analysis and complex SQL queries, and automated manual reporting tasks with Python.</li>
+                    </ul>
                 </div>
             </div>
 
-            <p class="text-center text-xs text-slate-400 mt-6">The full CV includes complete role details, education history, and references. <a href="cv.pdf" class="underline">Download PDF</a></p>
+            <div class="mt-12 pt-8 grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6 text-sm">
+                <div>
+                    <div class="section-label mb-2">Education</div>
+                    <div class="font-medium text-gray-900">B.Sc. Production Engineering</div>
+                    <div class="text-xs text-gray-400">UNINTER, Curitiba, Brazil · 2024</div>
+                    <div class="mt-1 text-xs text-gray-500">Also: Higher Technologist Degree in Industrial Production Management, UNINTER (2021)</div>
+                </div>
+                <div>
+                    <div class="section-label mb-2">Certifications &amp; Languages</div>
+                    <div class="space-y-1 text-xs text-gray-500">
+                        <div>IBM Data Science Professional Certificate (2021)</div>
+                        <div>Google Data Analytics Professional Certificate (2024)</div>
+                        <div>Portuguese (native), English &amp; Italian (full professional), German (elementary)</div>
+                    </div>
+                </div>
+            </div>
+
+            <p class="text-center text-xs text-gray-400 mt-10">The full CV includes complete role details, education history, and references. <a href="cv.pdf" class="link-underline text-gray-500">Download PDF</a></p>
         </div>
     </section>
 
     <!-- Contact / CTA -->
-    <section id="contact" class="border-t border-slate-800 bg-slate-900 py-16">
-        <div class="max-w-screen-xl mx-auto px-6 text-center">
-            <div class="max-w-lg mx-auto">
-                <h2 class="font-display text-4xl tracking-tighter">Let's build something impactful together.</h2>
-                <p class="mt-4 text-slate-400">I'm always excited to discuss new challenges in data analytics, statistics, or workforce insights. Whether you're hiring or collaborating, I'd love to hear from you.</p>
+    <section id="contact" class="py-24">
+        <div class="max-w-lg mx-auto px-6 text-center">
+            <h2 class="text-3xl font-medium tracking-tight text-gray-900">Let's build something impactful together.</h2>
+            <p class="mt-4 text-gray-500">I'm always excited to discuss new challenges in data analytics, statistics, or workforce insights. Whether you're hiring or collaborating, I'd love to hear from you.</p>
 
-                <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="mailto:cieslak.dmoritz@gmail.com"
-                       class="inline-flex items-center justify-center gap-x-3 px-8 h-14 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-3xl transition-all">
-                        <i class="fas fa-envelope"></i>
-                        <span>Send me an email</span>
-                    </a>
-                    <a href="https://linkedin.com/in/cieslakdaniel" target="_blank"
-                       class="inline-flex items-center justify-center gap-x-3 px-8 h-14 border border-slate-700 hover:bg-slate-800 font-semibold rounded-3xl transition-all">
-                        <i class="fab fa-linkedin"></i>
-                        <span>Connect on LinkedIn</span>
-                    </a>
-                </div>
+            <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center text-sm">
+                <a href="mailto:cieslak.dmoritz@gmail.com"
+                   class="btn-accent inline-flex items-center justify-center gap-x-2 px-7 h-12 text-white font-medium transition-colors rounded-full">
+                    <i class="fas fa-envelope text-xs"></i>
+                    <span>Send me an email</span>
+                </a>
+                <a href="https://linkedin.com/in/cieslakdaniel" target="_blank"
+                   class="inline-flex items-center justify-center gap-x-2 px-7 h-12 border border-gray-300 text-gray-500 hover:border-gray-900 hover:text-gray-900 transition-colors rounded-full">
+                    <i class="fab fa-linkedin text-xs"></i>
+                    <span>Connect on LinkedIn</span>
+                </a>
+            </div>
 
-                <div class="mt-10 text-xs text-slate-400">
-                    Based in Berlin, Germany • Open to relocation for study &amp; remote opportunities
-                </div>
+            <div class="mt-10 text-xs text-gray-400">
+                Based in Berlin, Germany · Open to relocation for study &amp; remote opportunities
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-black py-8 border-t border-slate-800">
-        <div class="max-w-screen-xl mx-auto px-6 text-center text-xs text-slate-500">
+    <footer class="py-8">
+        <div class="max-w-4xl mx-auto px-6 text-center text-xs text-gray-400">
             © 2026 Daniel Moritz Cieslak. Built with care for opportunities that create real impact.
-            <span class="hidden md:inline">• This portfolio is tailored for Data Analytics Engineer &amp; Data Science roles.</span>
         </div>
     </footer>
 
     <!-- Project Detail Modals -->
-    <div id="project-modal" onclick="if (event.target.id === 'project-modal') hideProjectModal()" class="hidden fixed inset-0 bg-black/70 backdrop-blur-sm z-[100] flex items-center justify-center p-6">
-        <div onclick="event.stopImmediatePropagation()" class="bg-slate-900 border border-slate-700 rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-auto">
+    <div id="project-modal" onclick="if (event.target.id === 'project-modal') hideProjectModal()" class="hidden fixed inset-0 bg-black/30 z-[100] flex items-center justify-center p-6">
+        <div onclick="event.stopImmediatePropagation()" class="modal bg-white border border-gray-200 max-w-2xl w-full max-h-[90vh] overflow-auto">
             <!-- Modal content injected by JS -->
             <div id="modal-content"></div>
         </div>
     </div>
 
     <script>
-        // Tailwind script
-        function initializeTailwind() {
-            document.documentElement.style.setProperty('--accent', '#6366f1');
-        }
-
         // Mobile menu
         const mobileBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
-        
+
         mobileBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
             const icon = mobileBtn.querySelector('i');
@@ -729,6 +573,24 @@
             });
         });
 
+        // Reveal the fixed navbar only once you scroll past the inline nav
+        const fixedNav = document.getElementById('fixed-nav');
+        const inlineNav = document.getElementById('inline-nav');
+
+        function toggleFixedNav() {
+            const pastInlineNav = inlineNav.getBoundingClientRect().bottom <= 0;
+            if (pastInlineNav) {
+                fixedNav.classList.remove('-translate-y-full');
+            } else {
+                fixedNav.classList.add('-translate-y-full');
+                mobileMenu.classList.add('hidden');
+                mobileBtn.querySelector('i').classList.replace('fa-times', 'fa-bars');
+            }
+        }
+
+        window.addEventListener('scroll', toggleFixedNav);
+        toggleFixedNav();
+
         // Smooth scroll for nav links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
@@ -738,7 +600,7 @@
                     const navHeight = 80;
                     const elementPosition = target.getBoundingClientRect().top;
                     const offsetPosition = elementPosition + window.scrollY - navHeight;
-                    
+
                     window.scrollTo({
                         top: offsetPosition,
                         behavior: 'smooth'
@@ -752,7 +614,7 @@
             {
                 id: 0,
                 title: "[Project 1 Title]",
-                subtitle: "[Category] • [Status]",
+                subtitle: "[Category] · [Status]",
                 description: "[Full description of this project — what it does, who it's for, and how you built it.]",
                 impact: "[The measurable impact or outcome of this project.]",
                 tech: ["[Tech]", "[Tech]", "[Tech]"],
@@ -767,7 +629,7 @@
             {
                 id: 1,
                 title: "[Project 2 Title]",
-                subtitle: "[Category] • [Status]",
+                subtitle: "[Category] · [Status]",
                 description: "[Full description of this project.]",
                 impact: "[The measurable impact or outcome of this project.]",
                 tech: ["[Tech]", "[Tech]", "[Tech]"],
@@ -782,7 +644,7 @@
             {
                 id: 2,
                 title: "[Project 3 Title]",
-                subtitle: "[Category] • [Status]",
+                subtitle: "[Category] · [Status]",
                 description: "[Full description of this project.]",
                 impact: "[The measurable impact or outcome of this project.]",
                 tech: ["[Tech]", "[Tech]", "[Tech]"],
@@ -801,68 +663,61 @@
             const modal = document.getElementById('project-modal');
             const contentContainer = document.getElementById('modal-content');
             const project = projectsData[projectIndex];
-            
+
             contentContainer.innerHTML = `
                 <div class="p-8 md:p-10">
                     <!-- Header -->
                     <div class="flex justify-between items-start">
                         <div>
-                            <div class="inline-block px-4 py-1 text-xs font-mono tracking-widest bg-indigo-950 text-indigo-400 rounded-2xl mb-4">${project.subtitle}</div>
-                            <h3 class="font-display text-3xl tracking-tight pr-8">${project.title}</h3>
+                            <div class="section-label mb-3">${project.subtitle}</div>
+                            <h3 class="text-2xl font-medium tracking-tight text-gray-900 pr-8">${project.title}</h3>
                         </div>
-                        <button onclick="hideProjectModal()" class="text-slate-400 hover:text-white transition p-2 -mr-2">
-                            <i class="fas fa-times text-2xl"></i>
+                        <button onclick="hideProjectModal()" class="text-gray-400 hover:text-gray-900 transition p-2 -mr-2">
+                            <i class="fas fa-times text-xl"></i>
                         </button>
                     </div>
 
-                    <div class="mt-6 prose prose-invert max-w-none text-[15px]">
+                    <div class="mt-6 text-[15px] text-gray-600 leading-relaxed">
                         <p>${project.description}</p>
-                        
+
                         <div class="mt-8 grid grid-cols-1 md:grid-cols-5 gap-x-8 gap-y-6">
                             <div class="md:col-span-3">
-                                <div class="uppercase text-xs tracking-[1.5px] text-indigo-400 font-semibold mb-3">Business &amp; Technical Impact</div>
-                                <p class="text-emerald-300 font-medium">${project.impact}</p>
+                                <div class="section-label mb-3">Business &amp; Technical Impact</div>
+                                <p class="text-gray-900 font-medium">${project.impact}</p>
                             </div>
-                            
+
                             <div class="md:col-span-2">
-                                <div class="uppercase text-xs tracking-[1.5px] text-indigo-400 font-semibold mb-3">Tech Stack</div>
-                                <div class="flex flex-wrap gap-2">
-                                    ${project.tech.map(tech => `<span class="px-3.5 py-1 text-xs bg-slate-800 rounded-2xl font-medium">${tech}</span>`).join('')}
-                                </div>
+                                <div class="section-label mb-3">Tech Stack</div>
+                                <p class="text-sm text-gray-600">${project.tech.join(' · ')}</p>
                             </div>
                         </div>
 
                         <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-8">
                             <div>
-                                <div class="uppercase text-xs tracking-[1.5px] text-indigo-400 font-semibold mb-3">Key Challenges</div>
+                                <div class="section-label mb-3">Key Challenges</div>
                                 <p>${project.challenges}</p>
                             </div>
                             <div>
-                                <div class="uppercase text-xs tracking-[1.5px] text-indigo-400 font-semibold mb-3">What I Learned</div>
+                                <div class="section-label mb-3">What I Learned</div>
                                 <p>${project.learnings}</p>
                             </div>
                         </div>
                     </div>
 
                     <!-- Action buttons -->
-                    <div class="mt-10 pt-8 border-t border-slate-700 flex flex-wrap gap-3">
-                        <a href="${project.links.github}" target="_blank" 
-                           class="flex-1 md:flex-none inline-flex justify-center items-center gap-x-2 px-6 h-12 border border-slate-600 hover:bg-slate-800 rounded-3xl text-sm font-medium transition">
-                            <i class="fab fa-github text-lg"></i>
-                            <span>View source code</span>
+                    <div class="mt-10 pt-8 border-t border-gray-100 flex flex-wrap gap-x-8 text-sm">
+                        <a href="${project.links.github}" target="_blank" class="link-underline text-gray-500">
+                            View source code
                         </a>
-                        
-                        <a href="${project.links.demo}" target="_blank" 
-                           class="flex-1 md:flex-none inline-flex justify-center items-center gap-x-2 px-6 h-12 bg-white text-slate-950 hover:bg-slate-100 rounded-3xl text-sm font-semibold transition">
-                            <span>Try the live demo</span>
-                            <i class="fas fa-external-link-alt text-xs"></i>
+                        <a href="${project.links.demo}" target="_blank" class="link-underline font-medium text-gray-900">
+                            Try the live demo
                         </a>
                     </div>
-                    
-                    <p class="text-center text-[10px] text-slate-500 mt-6">This is an example project. Replace with your real projects and update the links.</p>
+
+                    <p class="text-[10px] text-gray-400 mt-6">This is an example project. Replace with your real projects and update the links.</p>
                 </div>
             `;
-            
+
             modal.classList.remove('hidden');
             modal.classList.add('flex');
         }
@@ -883,40 +738,32 @@
             }
         });
 
-        // Initialize everything
-        function initializePortfolio() {
-            initializeTailwind();
-            
-            // Optional: Highlight active nav section on scroll (simple version)
-            const sections = ['about', 'projects', 'articles', 'learning', 'resume'];
-            const navLinks = document.querySelectorAll('nav a[href^="#"]');
-            
-            window.addEventListener('scroll', () => {
-                let current = '';
-                sections.forEach(sectionId => {
-                    const section = document.getElementById(sectionId);
-                    if (section) {
-                        const sectionTop = section.getBoundingClientRect().top;
-                        if (sectionTop <= 150) {
-                            current = sectionId;
-                        }
-                    }
-                });
-                
-                navLinks.forEach(link => {
-                    link.classList.remove('nav-active');
-                    if (link.getAttribute('href') === `#${current}`) {
-                        link.classList.add('nav-active');
-                    }
-                });
-            });
-            
-            // Easter egg / tip in console
-            console.log('%c[Portfolio] Tip: Replace the [bracketed] placeholders in Projects, Articles, and Learning, and add cv.pdf, with your real content.', 'color:#64748b; font-size: 9px');
-        }
+        // Highlight active nav section on scroll (fixed navbar only — the inline
+        // nav sits on a white background and would turn invisible if colored white)
+        const sections = ['about', 'projects', 'articles', 'learning', 'resume'];
+        const navLinks = document.querySelectorAll('#fixed-nav a[href^="#"]');
 
-        // Boot
-        window.onload = initializePortfolio;
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(sectionId => {
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    const sectionTop = section.getBoundingClientRect().top;
+                    if (sectionTop <= 150) {
+                        current = sectionId;
+                    }
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('nav-active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('nav-active');
+                }
+            });
+        });
+
+        console.log('%c[Portfolio] Tip: Replace the [bracketed] placeholders in Projects, Articles, and Learning, and add cv.pdf, with your real content.', 'color:#9ca3af; font-size: 9px');
     </script>
 </body>
 </html>
