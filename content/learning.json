@@ -1,0 +1,8 @@
+{
+    "intro": "Short intro to what you're currently exploring and why.",
+    "topics": [
+        { "topic": "Topic 1", "detail": "what you're learning and why it matters to you." },
+        { "topic": "Topic 2", "detail": "what you're learning and why it matters to you." },
+        { "topic": "Topic 3", "detail": "what you're learning and why it matters to you." }
+    ]
+}

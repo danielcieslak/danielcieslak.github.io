@@ -1,0 +1,26 @@
+[
+    {
+        "title": "Project 1 Title",
+        "blurb": "A short description of this project, e.g. a workforce dashboard, a Power Apps automation, or a data-correction tool.",
+        "links": [
+            { "label": "Code", "url": "#" },
+            { "label": "Live demo", "url": "#" }
+        ]
+    },
+    {
+        "title": "Project 2 Title",
+        "blurb": "A short description of this project.",
+        "links": [
+            { "label": "Code", "url": "#" },
+            { "label": "Case study", "url": "#" }
+        ]
+    },
+    {
+        "title": "Project 3 Title",
+        "blurb": "A short description of this project.",
+        "links": [
+            { "label": "Code", "url": "#" },
+            { "label": "Live demo", "url": "#" }
+        ]
+    }
+]

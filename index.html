@@ -169,66 +169,27 @@
         </div>
     </header>
 
-    <!-- Selected work -->
+    <!-- Selected work — content comes from CONTENT.projects at the bottom of this file -->
     <section id="projects" class="max-w-2xl mx-auto px-6 py-12">
         <h2 class="text-2xl font-semibold text-stone-900 mb-6">Selected Work</h2>
 
-        <div class="space-y-6 text-xl leading-relaxed text-stone-700">
-            <p>
-                <span class="font-medium text-stone-900">[Project 1 Title]</span> — [a short description of this project, e.g. a workforce dashboard, a Power Apps automation, or a data-correction tool].
-                <a href="#" target="_blank" class="link-underline text-stone-500 text-base">Code</a> ·
-                <a href="#" target="_blank" class="link-underline text-stone-500 text-base">Live demo</a>
-            </p>
-            <p>
-                <span class="font-medium text-stone-900">[Project 2 Title]</span> — [a short description of this project].
-                <a href="#" target="_blank" class="link-underline text-stone-500 text-base">Code</a> ·
-                <a href="#" target="_blank" class="link-underline text-stone-500 text-base">Case study</a>
-            </p>
-            <p>
-                <span class="font-medium text-stone-900">[Project 3 Title]</span> — [a short description of this project].
-                <a href="#" target="_blank" class="link-underline text-stone-500 text-base">Code</a> ·
-                <a href="#" target="_blank" class="link-underline text-stone-500 text-base">Live demo</a>
-            </p>
-        </div>
+        <div id="projects-list" class="space-y-6 text-xl leading-relaxed text-stone-700"></div>
 
         <p class="mt-6 text-base text-stone-400">More on my <a href="https://github.com/danielcieslak" target="_blank" class="link-underline text-stone-500">GitHub</a>.</p>
     </section>
 
-    <!-- Writing -->
+    <!-- Writing — content comes from CONTENT.articles at the bottom of this file -->
     <section id="articles" class="max-w-2xl mx-auto px-6 py-12">
         <h2 class="text-2xl font-semibold text-stone-900 mb-6">Writing</h2>
 
-        <div class="space-y-5 text-xl leading-relaxed text-stone-700">
-            <p>
-                <a href="#" class="link-underline font-medium text-stone-900">[Article 1 Title]</a>
-                <span class="text-base text-stone-400"> — [Month Year]</span><br>
-                <span class="text-stone-500">[Short summary of this article.]</span>
-            </p>
-            <p>
-                <a href="#" class="link-underline font-medium text-stone-900">[Article 2 Title]</a>
-                <span class="text-base text-stone-400"> — [Month Year]</span><br>
-                <span class="text-stone-500">[Short summary of this article.]</span>
-            </p>
-            <p>
-                <a href="#" class="link-underline font-medium text-stone-900">[Article 3 Title]</a>
-                <span class="text-base text-stone-400"> — [Month Year]</span><br>
-                <span class="text-stone-500">[Short summary of this article.]</span>
-            </p>
-        </div>
+        <div id="articles-list" class="space-y-5 text-xl leading-relaxed text-stone-700"></div>
     </section>
 
-    <!-- Currently learning -->
+    <!-- Currently learning — content comes from CONTENT.learning at the bottom of this file -->
     <section id="learning" class="max-w-2xl mx-auto px-6 py-12">
         <h2 class="text-2xl font-semibold text-stone-900 mb-6">What I'm Learning</h2>
 
-        <div class="text-xl leading-relaxed text-stone-700 space-y-5">
-            <p>[Short intro to what you're currently exploring and why.]</p>
-            <p>
-                <span class="font-medium text-stone-900">[Topic 1]</span> — [what you're learning and why it matters to you].<br>
-                <span class="font-medium text-stone-900">[Topic 2]</span> — [what you're learning and why it matters to you].<br>
-                <span class="font-medium text-stone-900">[Topic 3]</span> — [what you're learning and why it matters to you].
-            </p>
-        </div>
+        <div id="learning-body" class="text-xl leading-relaxed text-stone-700 space-y-5"></div>
     </section>
 
     <!-- Experience / CV -->
@@ -290,6 +251,80 @@
     </footer>
 
     <script>
+        /* =====================================================================
+           CONTENT
+           You no longer edit content here. Projects, articles, and "What I'm
+           Learning" live in separate files under the /content folder:
+               content/projects.json
+               content/articles.json
+               content/learning.json
+           This script just loads those files and renders them. See README.md.
+
+           NOTE: because the browser fetches these files, opening index.html
+           directly (file://) won't load them — run a local server to preview:
+               python3 -m http.server   →  http://localhost:8000
+           On GitHub Pages it works normally.
+        ===================================================================== */
+
+        // Escape user text so &, <, > render literally.
+        const esc = (s) => String(s).replace(/[&<>"]/g, c => (
+            { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]
+        ));
+
+        // Is this a link that leaves the site? (external http/https)
+        const isExternal = (url) => /^https?:\/\//i.test(url);
+
+        async function loadJSON(path, fallback) {
+            try {
+                const res = await fetch(path, { cache: 'no-cache' });
+                if (!res.ok) throw new Error(res.status);
+                return await res.json();
+            } catch (err) {
+                console.warn(`[Portfolio] Could not load ${path}:`, err.message);
+                return fallback;
+            }
+        }
+
+        function renderProjects(projects) {
+            document.getElementById('projects-list').innerHTML = (projects || []).map(p => {
+                const links = (p.links || [])
+                    .map(l => `<a href="${esc(l.url)}"${isExternal(l.url) ? ' target="_blank"' : ''} class="link-underline text-stone-500 text-base">${esc(l.label)}</a>`)
+                    .join(' · ');
+                return `<p><span class="font-medium text-stone-900">${esc(p.title)}</span> — ${esc(p.blurb)}${links ? ' ' + links : ''}</p>`;
+            }).join('');
+        }
+
+        function renderArticles(articles) {
+            document.getElementById('articles-list').innerHTML = (articles || []).map(a => {
+                const ext = isExternal(a.url) ? ' target="_blank"' : '';
+                return `<p>` +
+                    `<a href="${esc(a.url)}"${ext} class="link-underline font-medium text-stone-900">${esc(a.title)}</a>` +
+                    (a.date ? `<span class="text-base text-stone-400"> — ${esc(a.date)}</span>` : '') +
+                    (a.summary ? `<br><span class="text-stone-500">${esc(a.summary)}</span>` : '') +
+                    `</p>`;
+            }).join('');
+        }
+
+        function renderLearning(data) {
+            data = data || {};
+            const intro = data.intro ? `<p>${esc(data.intro)}</p>` : '';
+            const topics = (data.topics || [])
+                .map(t => `<span class="font-medium text-stone-900">${esc(t.topic)}</span> — ${esc(t.detail)}`)
+                .join('<br>');
+            document.getElementById('learning-body').innerHTML = intro + (topics ? `<p>${topics}</p>` : '');
+        }
+
+        (async () => {
+            const [projects, articles, learning] = await Promise.all([
+                loadJSON('content/projects.json', []),
+                loadJSON('content/articles.json', []),
+                loadJSON('content/learning.json', {})
+            ]);
+            renderProjects(projects);
+            renderArticles(articles);
+            renderLearning(learning);
+        })();
+
         // Mobile menu
         const mobileBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -383,7 +418,7 @@
             });
         });
 
-        console.log('%c[Portfolio] Tip: Replace the [bracketed] placeholders in Selected Work, Writing, and What I\'m Learning, and add cv.pdf, with your real content.', 'color:#9ca3af; font-size: 9px');
+        console.log('%c[Portfolio] Tip: Edit the JSON files in /content to add/change projects, articles, and learning. Add your real cv.pdf too.', 'color:#9ca3af; font-size: 9px');
     </script>
 </body>
 </html>

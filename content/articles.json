@@ -1,0 +1,20 @@
+[
+    {
+        "title": "Mean vs. Median",
+        "date": "July 2026",
+        "summary": "Which \"average\" should you actually trust? A short, practical primer on outliers and skew.",
+        "url": "articles/mean-vs-median.html"
+    },
+    {
+        "title": "Article 2 Title",
+        "date": "Month Year",
+        "summary": "Short summary of this article.",
+        "url": "#"
+    },
+    {
+        "title": "Article 3 Title",
+        "date": "Month Year",
+        "summary": "Short summary of this article.",
+        "url": "#"
+    }
+]
