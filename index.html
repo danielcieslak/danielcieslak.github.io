@@ -95,12 +95,12 @@
 <body class="bg-white text-stone-800">
     <!-- Fixed Navbar (hidden until you scroll past the intro) -->
     <nav id="fixed-nav" class="fixed top-0 left-0 right-0 z-50 bg-[#32273B] transition-transform duration-300 ease-out">
-        <div class="max-w-4xl mx-auto px-6">
+        <div class="w-full px-8 lg:px-12">
             <div class="flex items-center justify-between h-20">
-                <a href="#" class="text-lg font-medium tracking-tight text-white">Daniel Cieslak</a>
+                <a href="#" class="text-xl font-medium tracking-tight text-white">Daniel Cieslak</a>
 
                 <!-- Desktop Navigation -->
-                <div class="hidden md:flex items-center gap-x-8 text-base text-stone-300">
+                <div class="hidden md:flex items-center gap-x-8 text-lg text-stone-300">
                     <a href="#about" class="nav-link">About</a>
                     <a href="#projects" class="nav-link">Projects</a>
                     <a href="#articles" class="nav-link">Articles</a>
@@ -130,7 +130,7 @@
 
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden px-6 py-4 bg-[#241c2c]">
-            <div class="flex flex-col gap-y-1 text-base text-stone-300">
+            <div class="flex flex-col gap-y-1 text-lg text-stone-300">
                 <a href="#about" class="py-3">About</a>
                 <a href="#projects" class="py-3">Projects</a>
                 <a href="#articles" class="py-3">Articles</a>
@@ -146,398 +146,148 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <header class="max-w-4xl mx-auto px-6 pt-36 pb-24">
-        <div class="flex flex-col md:flex-row md:items-center gap-12">
-            <div class="flex-1">
-
-                <h1 class="text-6xl md:text-7xl font-medium tracking-tight leading-[1.1] text-stone-900">
-                    Daniel Cieslak.
-                </h1>
-
-                <p class="mt-6 max-w-lg text-xl text-stone-500 leading-relaxed">
-                    I build the data pipelines, dashboards, and reporting models that turn raw operational
-                    data into decisions — currently supporting a workforce of 11,500+ at Tesla, with a
-                    quantitative foundation in engineering, probability, and statistics.
-                </p>
-
-                <div class="mt-8 flex flex-wrap gap-x-8 gap-y-3 text-base">
-                    <a href="#projects" class="link-underline font-medium text-stone-900">Explore my projects</a>
-                    <a href="#resume" class="link-underline text-stone-500">Download CV</a>
-                </div>
-
-                <div class="mt-10 text-base text-stone-400">
-                    Berlin, Germany — open to relocation · Open to opportunities in Data Analytics &amp; Data Science
-                </div>
-            </div>
-
-            <!-- Hero Visual -->
-            <div class="flex-shrink-0">
-                <div class="w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden ring-2 ring-[#C8A47E]/50">
-                    <img src="profile-photo.jpg"
-                         alt="Daniel Cieslak professional portrait"
-                         class="photo w-full h-full object-cover">
-                </div>
-            </div>
+    <!-- Intro -->
+    <header class="max-w-2xl mx-auto px-6 pt-36 pb-4">
+        <div class="w-40 h-40 md:w-44 md:h-44 rounded-full overflow-hidden ring-2 ring-[#C8A47E]/50 mb-10">
+            <img src="profile-photo.jpg"
+                 alt="Daniel Cieslak professional portrait"
+                 class="photo w-full h-full object-cover">
         </div>
 
-        <!-- Quick Stats -->
-        <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-y-8">
-            <div>
-                <div class="text-3xl font-medium text-stone-900 tabular-nums">11,500+</div>
-                <div class="text-base text-stone-400 mt-1">Employees covered by dashboards</div>
-            </div>
-            <div>
-                <div class="text-3xl font-medium text-stone-900 tabular-nums">90%+</div>
-                <div class="text-base text-stone-400 mt-1">Manual reporting effort cut</div>
-            </div>
-            <div>
-                <div class="text-3xl font-medium text-stone-900 tabular-nums">4</div>
-                <div class="text-base text-stone-400 mt-1">Languages spoken</div>
-            </div>
-            <div>
-                <div class="text-3xl font-medium text-stone-900 tabular-nums">3</div>
-                <div class="text-base text-stone-400 mt-1">Countries lived &amp; studied in</div>
-            </div>
+        <h1 class="text-6xl md:text-7xl font-medium tracking-tight leading-none text-stone-900">
+            Daniel Cieslak
+        </h1>
+
+        <div id="about" class="mt-8 text-xl leading-relaxed text-stone-700 space-y-5">
+            <p>I'm a Data Analytics Engineer at Tesla in Berlin, where I build the data pipelines, dashboards, and reporting models that turn raw operational data into decisions for a workforce of more than 11,500 people. I trained as a Production Engineer, which gave me a solid quantitative foundation in mathematics, probability, and statistics.</p>
+
+            <p>Most of my days are spent turning raw operational data into reliable, decision-ready analysis. Along the way I've built Power Apps automations that replaced manual reporting workflows and cut that effort by more than 90%, and I've learned how much further I could take my foundation with rigorous, formal study in statistical methods.</p>
+
+            <p>I'm continuing to deepen my grounding in statistics, R, and data science while applying it directly in industry. I've lived and studied across Brazil, Italy, and Germany, and I speak four languages. I'm currently open to opportunities in Data Analytics and Data Science, and open to relocation.</p>
+
+            <p>The tools I reach for most: SQL, Python, TypeScript, Power BI, Power Apps, Tableau, Salesforce, and MongoDB&nbsp;/&nbsp;PostgreSQL.</p>
         </div>
     </header>
 
-    <!-- About Section -->
-    <section id="about" class="max-w-4xl mx-auto px-6 py-16">
-        <div class="flex items-center gap-2 mb-3">
-            <span class="kicker-bar"></span>
-            <p class="section-label">About me</p>
+    <!-- Selected work -->
+    <section id="projects" class="max-w-2xl mx-auto px-6 py-12">
+        <h2 class="text-2xl font-semibold text-stone-900 mb-6">Selected Work</h2>
+
+        <div class="space-y-6 text-xl leading-relaxed text-stone-700">
+            <p>
+                <span class="font-medium text-stone-900">[Project 1 Title]</span> — [a short description of this project, e.g. a workforce dashboard, a Power Apps automation, or a data-correction tool].
+                <a href="#" target="_blank" class="link-underline text-stone-500 text-base">Code</a> ·
+                <a href="#" target="_blank" class="link-underline text-stone-500 text-base">Live demo</a>
+            </p>
+            <p>
+                <span class="font-medium text-stone-900">[Project 2 Title]</span> — [a short description of this project].
+                <a href="#" target="_blank" class="link-underline text-stone-500 text-base">Code</a> ·
+                <a href="#" target="_blank" class="link-underline text-stone-500 text-base">Case study</a>
+            </p>
+            <p>
+                <span class="font-medium text-stone-900">[Project 3 Title]</span> — [a short description of this project].
+                <a href="#" target="_blank" class="link-underline text-stone-500 text-base">Code</a> ·
+                <a href="#" target="_blank" class="link-underline text-stone-500 text-base">Live demo</a>
+            </p>
         </div>
-        <h2 class="text-4xl font-medium tracking-tight text-stone-900 mb-10">Turning data into decisions.</h2>
 
-        <div class="grid md:grid-cols-12 gap-x-12 gap-y-10">
-            <!-- Bio -->
-            <div class="md:col-span-7 text-[15.5px] leading-relaxed text-stone-600 space-y-4">
-                <p>I'm a Production Engineer with almost two years of professional experience as a Data Analytics Engineer at Tesla, where I build the data pipelines, dashboards, and reporting models that inform decisions for a workforce of 11,500+.</p>
+        <p class="mt-6 text-base text-stone-400">More on my <a href="https://github.com/danielcieslak" target="_blank" class="link-underline text-stone-500">GitHub</a>.</p>
+    </section>
 
-                <p>My engineering training gave me a solid quantitative foundation in mathematics, probability, and statistics, and my day-to-day work turning raw operational data into reliable, decision-ready analysis has shown me how much further I could take that foundation with rigorous, formal study in statistical methods.</p>
+    <!-- Writing -->
+    <section id="articles" class="max-w-2xl mx-auto px-6 py-12">
+        <h2 class="text-2xl font-semibold text-stone-900 mb-6">Writing</h2>
 
-                <p>I'm continuing to deepen my theoretical grounding in statistics, R, and data science while applying that learning directly in industry — having lived and studied across Brazil, Italy, and Germany.</p>
-
-                <a href="#learning" class="inline-block mt-2 link-underline text-stone-900 text-base">See what I'm learning right now</a>
-            </div>
-
-            <!-- Education & Core Info -->
-            <div class="md:col-span-5">
-                <div class="font-medium text-stone-900">B.Sc. Production Engineering</div>
-                <div class="text-base text-stone-400">UNINTER, Brazil · 2024</div>
-
-                <div class="mt-8 pt-8">
-                    <div class="section-label mb-3">Core expertise</div>
-                    <p class="text-base text-stone-600 leading-relaxed">
-                        SQL · Python · TypeScript · Power BI · Power Apps · Tableau · Salesforce · MongoDB / PostgreSQL
-                    </p>
-                </div>
-            </div>
+        <div class="space-y-5 text-xl leading-relaxed text-stone-700">
+            <p>
+                <a href="#" class="link-underline font-medium text-stone-900">[Article 1 Title]</a>
+                <span class="text-base text-stone-400"> — [Month Year]</span><br>
+                <span class="text-stone-500">[Short summary of this article.]</span>
+            </p>
+            <p>
+                <a href="#" class="link-underline font-medium text-stone-900">[Article 2 Title]</a>
+                <span class="text-base text-stone-400"> — [Month Year]</span><br>
+                <span class="text-stone-500">[Short summary of this article.]</span>
+            </p>
+            <p>
+                <a href="#" class="link-underline font-medium text-stone-900">[Article 3 Title]</a>
+                <span class="text-base text-stone-400"> — [Month Year]</span><br>
+                <span class="text-stone-500">[Short summary of this article.]</span>
+            </p>
         </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="py-16">
-        <div class="max-w-4xl mx-auto px-6">
-            <div class="flex items-end justify-between mb-12">
-                <div>
-                    <div class="flex items-center gap-2 mb-3">
-                        <span class="kicker-bar"></span>
-                        <p class="section-label">Selected work</p>
-                    </div>
-                    <h2 class="text-4xl font-medium tracking-tight text-stone-900">Projects &amp; Web Apps</h2>
-                </div>
-                <a href="https://github.com/danielcieslak?tab=repositories" target="_blank"
-                   class="hidden md:block text-base link-underline text-stone-500">
-                    View all on GitHub
-                </a>
-            </div>
+    <!-- Currently learning -->
+    <section id="learning" class="max-w-2xl mx-auto px-6 py-12">
+        <h2 class="text-2xl font-semibold text-stone-900 mb-6">What I'm Learning</h2>
 
-            <div class="grid md:grid-cols-2 gap-x-10 gap-y-14">
-
-                <!-- Project 1: placeholder -->
-                <div class="group">
-                    <div class="section-label mb-3">[Category] · [Status]</div>
-                    <h3 class="text-2xl font-medium text-stone-900 group-hover:text-stone-500 transition-colors">[Project 1 Title]</h3>
-                    <p class="mt-3 text-[15px] text-stone-500 leading-relaxed">[Add a short description of this project — e.g. a workforce dashboard, a Power Apps automation, or a data-correction tool.]</p>
-
-                    <div class="mt-4 text-sm text-stone-400">[Tech] · [Tech] · [Tech]</div>
-
-                    <div class="mt-5 flex items-center justify-between text-base">
-                        <div class="text-stone-400">
-                            <span class="font-medium text-stone-900">[XX%]</span> [impact metric]
-                        </div>
-                        <div class="flex gap-x-5">
-                            <a href="#" target="_blank" class="link-underline text-stone-500">Code</a>
-                            <a href="#" target="_blank" onclick="showProjectModal(0)" class="link-underline font-medium text-stone-900">Live Demo</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 2: placeholder -->
-                <div class="group">
-                    <div class="section-label mb-3">[Category] · [Status]</div>
-                    <h3 class="text-2xl font-medium text-stone-900 group-hover:text-stone-500 transition-colors">[Project 2 Title]</h3>
-                    <p class="mt-3 text-[15px] text-stone-500 leading-relaxed">[Add a short description of this project.]</p>
-
-                    <div class="mt-4 text-sm text-stone-400">[Tech] · [Tech] · [Tech]</div>
-
-                    <div class="mt-5 flex items-center justify-between text-base">
-                        <div class="text-stone-400">
-                            <span class="font-medium text-stone-900">[XX%]</span> [impact metric]
-                        </div>
-                        <div class="flex gap-x-5">
-                            <a href="#" target="_blank" class="link-underline text-stone-500">Code</a>
-                            <button onclick="showProjectModal(1)" class="link-underline font-medium text-stone-900">Case Study</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 3: placeholder -->
-                <div class="group">
-                    <div class="section-label mb-3">[Category] · [Status]</div>
-                    <h3 class="text-2xl font-medium text-stone-900 group-hover:text-stone-500 transition-colors">[Project 3 Title]</h3>
-                    <p class="mt-3 text-[15px] text-stone-500 leading-relaxed">[Add a short description of this project.]</p>
-
-                    <div class="mt-4 text-sm text-stone-400">[Tech] · [Tech] · [Tech]</div>
-
-                    <div class="mt-5 flex items-center justify-between text-base">
-                        <div class="text-stone-400">
-                            <span class="font-medium text-stone-900">[XX%]</span> [impact metric]
-                        </div>
-                        <div class="flex gap-x-5">
-                            <a href="#" target="_blank" class="link-underline text-stone-500">Code</a>
-                            <button onclick="showProjectModal(2)" class="link-underline font-medium text-stone-900">Live Demo</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <p class="text-center text-sm text-stone-400 mt-14">More on my <a href="https://github.com/danielcieslak" class="link-underline text-stone-500">GitHub</a>. [Replace the placeholders above with your real projects.]</p>
+        <div class="text-xl leading-relaxed text-stone-700 space-y-5">
+            <p>[Short intro to what you're currently exploring and why.]</p>
+            <p>
+                <span class="font-medium text-stone-900">[Topic 1]</span> — [what you're learning and why it matters to you].<br>
+                <span class="font-medium text-stone-900">[Topic 2]</span> — [what you're learning and why it matters to you].<br>
+                <span class="font-medium text-stone-900">[Topic 3]</span> — [what you're learning and why it matters to you].
+            </p>
         </div>
     </section>
 
-    <!-- Articles Section -->
-    <section id="articles" class="max-w-4xl mx-auto px-6 py-16">
-        <div class="flex items-end justify-between mb-10">
+    <!-- Experience / CV -->
+    <section id="resume" class="max-w-2xl mx-auto px-6 py-12">
+        <div class="flex items-baseline justify-between mb-6">
+            <h2 class="text-2xl font-semibold text-stone-900">Experience</h2>
+            <a href="cv.pdf" download class="link-underline text-base text-stone-500">Download CV (PDF)</a>
+        </div>
+
+        <div class="space-y-8 text-xl leading-relaxed text-stone-700">
             <div>
-                <div class="flex items-center gap-2 mb-3">
-                    <span class="kicker-bar"></span>
-                    <p class="section-label">Thought leadership</p>
-                </div>
-                <h2 class="text-4xl font-medium tracking-tight text-stone-900">Articles &amp; Insights</h2>
+                <p><span class="font-medium text-stone-900">Associate Data Analytics Engineer</span>, Tesla — Berlin <span class="text-base text-stone-400">(Dec 2025 – Present)</span></p>
+                <p class="mt-1 text-lg text-stone-600">Build and maintain executive dashboards and reporting pipelines — headcount, turnover, workforce distribution — using SQL, Python, and ZipLabs for a workforce of 11,500+. Partner with HR, operations, and business stakeholders to turn ambiguous questions into defined analytics solutions, and built Power Apps automations that cut manual reporting effort by 90%+.</p>
             </div>
-            <a href="#" target="_blank" class="hidden md:block text-base link-underline text-stone-500">Read all on [Medium/LinkedIn]</a>
+
+            <div>
+                <p><span class="font-medium text-stone-900">Intern Data Analytics Engineer</span>, Tesla — Berlin <span class="text-base text-stone-400">(Dec 2024 – Nov 2025)</span></p>
+                <p class="mt-1 text-lg text-stone-600">Joined Tesla's People Analytics team, building foundational dashboards and reporting workflows before being promoted to Associate.</p>
+            </div>
+
+            <div>
+                <p><span class="font-medium text-stone-900">Data Analyst, Technology Transfer Office</span>, Politecnico di Milano <span class="text-base text-stone-400">(Jun 2023 – Feb 2024)</span></p>
+                <p class="mt-1 text-lg text-stone-600">Managed and analysed innovation and intellectual-property datasets, redesigning data collection to improve quality and reporting efficiency, and built automated reports and dashboards in Salesforce and Excel.</p>
+            </div>
+
+            <div>
+                <p><span class="font-medium text-stone-900">Data Analytics Manager</span>, BRASA (Brazilian Student Association) <span class="text-base text-stone-400">(Dec 2022 – Feb 2024)</span></p>
+                <p class="mt-1 text-lg text-stone-600">Built dashboards in Tableau and managed a MongoDB/PostgreSQL database to support the executive board's decisions, ran financial analysis and complex SQL queries, and automated manual reporting with Python.</p>
+            </div>
         </div>
 
-        <div class="space-y-10">
-            <!-- Article rows: placeholders -->
-            <a href="#" class="group flex flex-col md:flex-row md:items-baseline md:justify-between gap-2">
-                <div class="md:max-w-lg">
-                    <h3 class="font-medium text-stone-900 group-hover:text-stone-500 transition-colors">[Article 1 Title]</h3>
-                    <p class="mt-1.5 text-base text-stone-500">[Short summary of this article.]</p>
-                </div>
-                <div class="text-sm text-stone-400 whitespace-nowrap md:pl-8">[MONTH YEAR] · [X] min read</div>
-            </a>
-
-            <a href="#" class="group flex flex-col md:flex-row md:items-baseline md:justify-between gap-2">
-                <div class="md:max-w-lg">
-                    <h3 class="font-medium text-stone-900 group-hover:text-stone-500 transition-colors">[Article 2 Title]</h3>
-                    <p class="mt-1.5 text-base text-stone-500">[Short summary of this article.]</p>
-                </div>
-                <div class="text-sm text-stone-400 whitespace-nowrap md:pl-8">[MONTH YEAR] · [X] min read</div>
-            </a>
-
-            <a href="#" class="group flex flex-col md:flex-row md:items-baseline md:justify-between gap-2">
-                <div class="md:max-w-lg">
-                    <h3 class="font-medium text-stone-900 group-hover:text-stone-500 transition-colors">[Article 3 Title]</h3>
-                    <p class="mt-1.5 text-base text-stone-500">[Short summary of this article.]</p>
-                </div>
-                <div class="text-sm text-stone-400 whitespace-nowrap md:pl-8">[MONTH YEAR] · [X] min read</div>
-            </a>
+        <div class="mt-10 text-xl leading-relaxed text-stone-700 space-y-3">
+            <p><span class="font-medium text-stone-900">Education.</span> B.Sc. Production Engineering, UNINTER, Curitiba, Brazil (2024). Higher Technologist Degree in Industrial Production Management, UNINTER (2021).</p>
+            <p><span class="font-medium text-stone-900">Certifications.</span> IBM Data Science Professional Certificate (2021); Google Data Analytics Professional Certificate (2024).</p>
+            <p><span class="font-medium text-stone-900">Languages.</span> Portuguese (native), English &amp; Italian (full professional), German (elementary).</p>
         </div>
     </section>
 
-    <!-- Currently Learning -->
-    <section id="learning" class="py-16">
-        <div class="max-w-4xl mx-auto px-6">
-            <div class="max-w-2xl mb-12">
-                <div class="flex items-center gap-2 mb-3">
-                    <span class="kicker-bar"></span>
-                    <p class="section-label">Growth mindset</p>
-                </div>
-                <h2 class="text-4xl font-medium tracking-tight text-stone-900">What I'm learning right now</h2>
-                <p class="mt-3 text-stone-500">[Short intro to what you're currently exploring and why.]</p>
-            </div>
+    <!-- Contact -->
+    <section id="contact" class="max-w-2xl mx-auto px-6 py-12">
+        <h2 class="text-2xl font-semibold text-stone-900 mb-6">Contact</h2>
 
-            <div class="grid md:grid-cols-3 gap-10">
-                <div>
-                    <div class="font-medium text-stone-900">[Topic 1]</div>
-                    <div class="text-sm text-stone-400 mt-1">[STATUS]</div>
-                    <p class="mt-4 text-base text-stone-600 leading-relaxed">[What you're learning and why it matters to you.]</p>
-                    <div class="mt-3 text-sm text-stone-400">Resources: [list resources]</div>
-                </div>
-
-                <div>
-                    <div class="font-medium text-stone-900">[Topic 2]</div>
-                    <div class="text-sm text-stone-400 mt-1">[STATUS]</div>
-                    <p class="mt-4 text-base text-stone-600 leading-relaxed">[What you're learning and why it matters to you.]</p>
-                    <div class="mt-3 text-sm text-stone-400">Current focus: [short note]</div>
-                </div>
-
-                <div>
-                    <div class="font-medium text-stone-900">[Topic 3]</div>
-                    <div class="text-sm text-stone-400 mt-1">[STATUS]</div>
-                    <p class="mt-4 text-base text-stone-600 leading-relaxed">[What you're learning and why it matters to you.]</p>
-                    <div class="mt-3 text-sm text-stone-400">Reading: [book / papers]</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Resume / CV Section -->
-    <section id="resume" class="py-16">
-        <div class="max-w-3xl mx-auto px-6">
-            <div class="mb-12">
-                <div class="flex items-center gap-2 mb-3">
-                    <span class="kicker-bar"></span>
-                    <p class="section-label">Professional background</p>
-                </div>
-                <h2 class="text-4xl font-medium tracking-tight text-stone-900">Curriculum Vitae</h2>
-                <p class="mt-3 text-stone-500">A summary of my experience, education, and impact. Full detailed CV available for download.</p>
-            </div>
-
-            <!-- CV Header -->
-            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-y-4 pb-8">
-                <div>
-                    <div class="text-3xl font-medium tracking-tight text-stone-900">Daniel Moritz Cieslak</div>
-                    <div class="text-stone-500 text-base mt-1">Data Analytics Engineer | Production Engineer</div>
-                </div>
-                <a href="cv.pdf" download class="link-underline text-base font-medium text-stone-900">
-                    Download full PDF CV
-                </a>
-            </div>
-
-            <!-- Experience Timeline -->
-            <div class="space-y-10">
-                <div>
-                    <div class="flex flex-col md:flex-row md:items-baseline md:justify-between gap-1">
-                        <div>
-                            <span class="font-medium text-stone-900">Associate Data Analytics Engineer</span>
-                            <span class="text-stone-500">— Tesla, Berlin</span>
-                        </div>
-                        <span class="text-sm text-stone-400 whitespace-nowrap">Dec 2025 — Present</span>
-                    </div>
-                    <ul class="mt-3 text-base text-stone-600 space-y-1.5">
-                        <li><span class="text-stone-400">—</span> Build and maintain executive dashboards and reporting pipelines (headcount, turnover, workforce distribution) using SQL, Python, and ZipLabs for a workforce of 11,500+.</li>
-                        <li><span class="text-stone-400">—</span> Partner with HR, operations, and business stakeholders to translate ambiguous questions into defined analytics solutions and deliver actionable recommendations.</li>
-                        <li><span class="text-stone-400">—</span> Built and rolled out Power Apps automations that replaced manual reporting workflows, cutting manual effort by 90%+.</li>
-                    </ul>
-                </div>
-
-                <div>
-                    <div class="flex flex-col md:flex-row md:items-baseline md:justify-between gap-1">
-                        <div>
-                            <span class="font-medium text-stone-900">Intern Data Analytics Engineer</span>
-                            <span class="text-stone-500">— Tesla, Berlin</span>
-                        </div>
-                        <span class="text-sm text-stone-400 whitespace-nowrap">Dec 2024 — Nov 2025</span>
-                    </div>
-                    <ul class="mt-3 text-base text-stone-600 space-y-1.5">
-                        <li><span class="text-stone-400">—</span> Joined Tesla's People Analytics team, building foundational dashboards and reporting workflows before being promoted to Associate.</li>
-                    </ul>
-                </div>
-
-                <div>
-                    <div class="flex flex-col md:flex-row md:items-baseline md:justify-between gap-1">
-                        <div>
-                            <span class="font-medium text-stone-900">Data Analyst, Technology Transfer Office</span>
-                            <span class="text-stone-500">— Politecnico di Milano</span>
-                        </div>
-                        <span class="text-sm text-stone-400 whitespace-nowrap">Jun 2023 — Feb 2024</span>
-                    </div>
-                    <ul class="mt-3 text-base text-stone-600 space-y-1.5">
-                        <li><span class="text-stone-400">—</span> Managed and analysed innovation and intellectual-property datasets, redesigning data collection to improve quality and reporting efficiency.</li>
-                        <li><span class="text-stone-400">—</span> Built automated reports and dashboards in Salesforce and Excel, increasing stakeholder visibility into KPIs.</li>
-                    </ul>
-                </div>
-
-                <div>
-                    <div class="flex flex-col md:flex-row md:items-baseline md:justify-between gap-1">
-                        <div>
-                            <span class="font-medium text-stone-900">Data Analytics Manager</span>
-                            <span class="text-stone-500">— BRASA, Brazilian Student Association</span>
-                        </div>
-                        <span class="text-sm text-stone-400 whitespace-nowrap">Dec 2022 — Feb 2024</span>
-                    </div>
-                    <ul class="mt-3 text-base text-stone-600 space-y-1.5">
-                        <li><span class="text-stone-400">—</span> Built dashboards in Tableau and managed a MongoDB/PostgreSQL database to support the executive board's decision-making.</li>
-                        <li><span class="text-stone-400">—</span> Ran financial analysis and complex SQL queries, and automated manual reporting tasks with Python.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="mt-12 pt-8 grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6 text-base">
-                <div>
-                    <div class="section-label mb-2">Education</div>
-                    <div class="font-medium text-stone-900">B.Sc. Production Engineering</div>
-                    <div class="text-sm text-stone-400">UNINTER, Curitiba, Brazil · 2024</div>
-                    <div class="mt-1 text-sm text-stone-500">Also: Higher Technologist Degree in Industrial Production Management, UNINTER (2021)</div>
-                </div>
-                <div>
-                    <div class="section-label mb-2">Certifications &amp; Languages</div>
-                    <div class="space-y-1 text-sm text-stone-500">
-                        <div>IBM Data Science Professional Certificate (2021)</div>
-                        <div>Google Data Analytics Professional Certificate (2024)</div>
-                        <div>Portuguese (native), English &amp; Italian (full professional), German (elementary)</div>
-                    </div>
-                </div>
-            </div>
-
-            <p class="text-center text-sm text-stone-400 mt-10">The full CV includes complete role details, education history, and references. <a href="cv.pdf" class="link-underline text-stone-500">Download PDF</a></p>
-        </div>
-    </section>
-
-    <!-- Contact / CTA -->
-    <section id="contact" class="py-24">
-        <div class="max-w-lg mx-auto px-6 text-center">
-            <h2 class="text-4xl font-medium tracking-tight text-stone-900">Let's build something impactful together.</h2>
-            <p class="mt-4 text-stone-500">I'm always excited to discuss new challenges in data analytics, statistics, or workforce insights. Whether you're hiring or collaborating, I'd love to hear from you.</p>
-
-            <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center text-base">
-                <a href="mailto:cieslak.dmoritz@gmail.com"
-                   class="btn-accent inline-flex items-center justify-center gap-x-2 px-7 h-12 text-white font-medium transition-colors rounded-full">
-                    <i class="fas fa-envelope text-sm"></i>
-                    <span>Send me an email</span>
-                </a>
-                <a href="https://linkedin.com/in/cieslakdaniel" target="_blank"
-                   class="inline-flex items-center justify-center gap-x-2 px-7 h-12 border border-stone-300 text-stone-500 hover:border-stone-900 hover:text-stone-900 transition-colors rounded-full">
-                    <i class="fab fa-linkedin text-sm"></i>
-                    <span>Connect on LinkedIn</span>
-                </a>
-            </div>
-
-            <div class="mt-10 text-sm text-stone-400">
-                Based in Berlin, Germany · Open to relocation for study &amp; remote opportunities
-            </div>
+        <div class="text-xl leading-relaxed text-stone-700 space-y-3">
+            <p>If you'd like to work together — hiring, collaborating, or just talking data — I'd love to hear from you.</p>
+            <p>
+                Email — <a href="mailto:cieslak.dmoritz@gmail.com" class="link-underline text-stone-900">cieslak.dmoritz@gmail.com</a><br>
+                LinkedIn — <a href="https://linkedin.com/in/cieslakdaniel" target="_blank" class="link-underline text-stone-900">/in/cieslakdaniel</a><br>
+                GitHub — <a href="https://github.com/danielcieslak" target="_blank" class="link-underline text-stone-900">/danielcieslak</a>
+            </p>
+            <p class="text-base text-stone-400">Based in Berlin, Germany · Open to relocation for study &amp; remote opportunities.</p>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="py-8">
-        <div class="max-w-4xl mx-auto px-6 text-center text-sm text-stone-400">
-            © 2026 Daniel Moritz Cieslak. Built with care for opportunities that create real impact.
+    <footer class="max-w-2xl mx-auto px-6 py-10">
+        <div class="text-base text-stone-400">
+            © 2026 Daniel Moritz Cieslak
         </div>
     </footer>
-
-    <!-- Project Detail Modals -->
-    <div id="project-modal" onclick="if (event.target.id === 'project-modal') hideProjectModal()" class="hidden fixed inset-0 bg-black/30 z-[100] flex items-center justify-center p-6">
-        <div onclick="event.stopImmediatePropagation()" class="modal bg-white border border-stone-200 max-w-2xl w-full max-h-[90vh] overflow-auto">
-            <!-- Modal content injected by JS -->
-            <div id="modal-content"></div>
-        </div>
-    </div>
 
     <script>
         // Mobile menu
@@ -609,137 +359,7 @@
             });
         });
 
-        // Project data for modals — replace with your real projects
-        const projectsData = [
-            {
-                id: 0,
-                title: "[Project 1 Title]",
-                subtitle: "[Category] · [Status]",
-                description: "[Full description of this project — what it does, who it's for, and how you built it.]",
-                impact: "[The measurable impact or outcome of this project.]",
-                tech: ["[Tech]", "[Tech]", "[Tech]"],
-                challenges: "[Key challenges you faced building this.]",
-                learnings: "[What you learned from this project.]",
-                links: {
-                    github: "#",
-                    demo: "#",
-                    caseStudy: "#"
-                }
-            },
-            {
-                id: 1,
-                title: "[Project 2 Title]",
-                subtitle: "[Category] · [Status]",
-                description: "[Full description of this project.]",
-                impact: "[The measurable impact or outcome of this project.]",
-                tech: ["[Tech]", "[Tech]", "[Tech]"],
-                challenges: "[Key challenges you faced building this.]",
-                learnings: "[What you learned from this project.]",
-                links: {
-                    github: "#",
-                    demo: "#",
-                    caseStudy: "#"
-                }
-            },
-            {
-                id: 2,
-                title: "[Project 3 Title]",
-                subtitle: "[Category] · [Status]",
-                description: "[Full description of this project.]",
-                impact: "[The measurable impact or outcome of this project.]",
-                tech: ["[Tech]", "[Tech]", "[Tech]"],
-                challenges: "[Key challenges you faced building this.]",
-                learnings: "[What you learned from this project.]",
-                links: {
-                    github: "#",
-                    demo: "#",
-                    caseStudy: "#"
-                }
-            }
-        ];
-
-        // Show project modal
-        function showProjectModal(projectIndex) {
-            const modal = document.getElementById('project-modal');
-            const contentContainer = document.getElementById('modal-content');
-            const project = projectsData[projectIndex];
-
-            contentContainer.innerHTML = `
-                <div class="p-8 md:p-10">
-                    <!-- Header -->
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <div class="section-label mb-3">${project.subtitle}</div>
-                            <h3 class="text-3xl font-medium tracking-tight text-stone-900 pr-8">${project.title}</h3>
-                        </div>
-                        <button onclick="hideProjectModal()" class="text-stone-400 hover:text-stone-900 transition p-2 -mr-2">
-                            <i class="fas fa-times text-2xl"></i>
-                        </button>
-                    </div>
-
-                    <div class="mt-6 text-[15px] text-stone-600 leading-relaxed">
-                        <p>${project.description}</p>
-
-                        <div class="mt-8 grid grid-cols-1 md:grid-cols-5 gap-x-8 gap-y-6">
-                            <div class="md:col-span-3">
-                                <div class="section-label mb-3">Business &amp; Technical Impact</div>
-                                <p class="text-stone-900 font-medium">${project.impact}</p>
-                            </div>
-
-                            <div class="md:col-span-2">
-                                <div class="section-label mb-3">Tech Stack</div>
-                                <p class="text-base text-stone-600">${project.tech.join(' · ')}</p>
-                            </div>
-                        </div>
-
-                        <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-8">
-                            <div>
-                                <div class="section-label mb-3">Key Challenges</div>
-                                <p>${project.challenges}</p>
-                            </div>
-                            <div>
-                                <div class="section-label mb-3">What I Learned</div>
-                                <p>${project.learnings}</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Action buttons -->
-                    <div class="mt-10 pt-8 border-t border-stone-100 flex flex-wrap gap-x-8 text-base">
-                        <a href="${project.links.github}" target="_blank" class="link-underline text-stone-500">
-                            View source code
-                        </a>
-                        <a href="${project.links.demo}" target="_blank" class="link-underline font-medium text-stone-900">
-                            Try the live demo
-                        </a>
-                    </div>
-
-                    <p class="text-[10px] text-stone-400 mt-6">This is an example project. Replace with your real projects and update the links.</p>
-                </div>
-            `;
-
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-        }
-
-        function hideProjectModal() {
-            const modal = document.getElementById('project-modal');
-            modal.classList.remove('flex');
-            modal.classList.add('hidden');
-        }
-
-        // Keyboard escape for modal
-        document.addEventListener('keydown', function(e) {
-            if (e.key === "Escape") {
-                const modal = document.getElementById('project-modal');
-                if (!modal.classList.contains('hidden')) {
-                    hideProjectModal();
-                }
-            }
-        });
-
-        // Highlight active nav section on scroll (fixed navbar only — the inline
-        // nav sits on a white background and would turn invisible if colored white)
+        // Highlight active nav section on scroll
         const sections = ['about', 'projects', 'articles', 'learning', 'resume'];
         const navLinks = document.querySelectorAll('#fixed-nav a[href^="#"]');
 
@@ -763,7 +383,7 @@
             });
         });
 
-        console.log('%c[Portfolio] Tip: Replace the [bracketed] placeholders in Projects, Articles, and Learning, and add cv.pdf, with your real content.', 'color:#9ca3af; font-size: 9px');
+        console.log('%c[Portfolio] Tip: Replace the [bracketed] placeholders in Selected Work, Writing, and What I\'m Learning, and add cv.pdf, with your real content.', 'color:#9ca3af; font-size: 9px');
     </script>
 </body>
 </html>
